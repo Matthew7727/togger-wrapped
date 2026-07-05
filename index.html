@@ -154,6 +154,18 @@ body{
 #restart{font:inherit;margin-top:30px;background:var(--fg);color:var(--bg);border:0;border-radius:999px;
   padding:14px 26px;font-weight:700;font-size:15px;cursor:pointer;position:relative;z-index:60}
 
+@media (max-width:420px){
+  .slide{padding:max(56px,env(safe-area-inset-top)) 18px max(34px,env(safe-area-inset-bottom))}
+  .eyebrow{font-size:10px;letter-spacing:.16em}
+  .lede{font-size:14px}
+  .row{grid-template-columns:62px 1fr 36px;gap:8px;font-size:12px}
+  .row .num{font-size:10px}
+  .card{padding:12px}
+  .card .k{font-size:9px;letter-spacing:.10em;line-height:1.35;word-break:break-word}
+  .card .v{font-size:20px;line-height:1}
+  .card p{font-size:12px}
+}
+
 @media (prefers-reduced-motion:reduce){
   *{transition:none!important;animation:none!important}
   [data-s]{opacity:1;transform:none}
@@ -397,6 +409,66 @@ body{
   </div>
 </section>
 
+<!-- 16 · MONTHLY MOMENTUM -->
+<section class="slide t-blue">
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">New analysis · month-by-month</div>
+    <h2 class="display" data-s style="--d:100ms">Monthly<br><span class="ac">momentum</span></h2>
+    <div class="cards" id="monthly-list" data-s style="--d:260ms">
+      <div class="card"><div class="k">Loading</div><div class="v">Crunching</div><p>Reading matchday logs...</p></div>
+    </div>
+    <p class="foot" data-s style="--d:620ms">Now generated from <code>_chat.txt</code> data, not hand-entered.</p>
+  </div>
+</section>
+
+<!-- 17 · HANDOFF NETWORK -->
+<section class="slide t-orange">
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">New analysis · who replies to who</div>
+    <h2 class="display" data-s style="--d:100ms">Handoff<br><span class="hollow">network</span></h2>
+    <div class="cards" id="handoff-list" data-s style="--d:260ms">
+      <div class="card"><div class="k">Loading</div><div class="v">Pairings</div><p>Finding strongest links...</p></div>
+    </div>
+    <p class="foot" data-s style="--d:620ms">A handoff is two consecutive messages from different people.</p>
+  </div>
+</section>
+
+<!-- 18 · QUESTION CONVERSION -->
+<section class="slide t-ink">
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">New analysis · question effectiveness</div>
+    <h2 class="display" data-s style="--d:100ms">Question<br><span class="ac">conversion</span></h2>
+    <div class="cards" id="question-list" data-s style="--d:260ms">
+      <div class="card"><div class="k">Loading</div><div class="v">Answer rates</div><p>Checking response windows...</p></div>
+    </div>
+    <p class="foot" data-s style="--d:620ms">Shows share of questions answered by someone else within 30 minutes.</p>
+  </div>
+</section>
+
+<!-- 19 · NIGHT OWLS -->
+<section class="slide t-gold">
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">New analysis · late-shift table</div>
+    <h2 class="display" data-s style="--d:100ms">Night<br><span class="hollow">owls</span></h2>
+    <div class="rows" id="owl-list">
+      <div class="row" data-s style="--d:220ms"><span class="nm">Loading</span><span class="bar"><i style="--w:100%;--d:270ms"></i></span><span class="num">...</span></div>
+    </div>
+    <p class="foot" data-s style="--d:620ms">Messages sent between 00:00 and 05:59.</p>
+  </div>
+</section>
+
+<!-- 20 · DAY STARTERS -->
+<section class="slide t-blue">
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">New analysis · who starts the chatter</div>
+    <h2 class="display" data-s style="--d:100ms">Day<br><span class="ac">starters</span></h2>
+    <div class="rows" id="starter-list">
+      <div class="row" data-s style="--d:220ms"><span class="nm">Loading</span><span class="bar"><i style="--w:100%;--d:270ms"></i></span><span class="num">...</span></div>
+    </div>
+    <p class="foot" id="methodology-note" data-s style="--d:620ms">Methodology loading...</p>
+  </div>
+</section>
+
 
 <!-- CARD 1 · JAMES R'S -->
 <section class="slide t-ink">
@@ -553,66 +625,6 @@ body{
     <p class="foot" data-s style="--d:700ms">Every squad needs depth.</p>
   </div>
 </section>
-<!-- 16 · MONTHLY MOMENTUM -->
-<section class="slide t-blue">
-  <div class="wrap">
-    <div class="eyebrow" data-s style="--d:0ms">New analysis · month-by-month</div>
-    <h2 class="display" data-s style="--d:100ms">Monthly<br><span class="ac">momentum</span></h2>
-    <div class="cards" id="monthly-list" data-s style="--d:260ms">
-      <div class="card"><div class="k">Loading</div><div class="v">Crunching</div><p>Reading matchday logs...</p></div>
-    </div>
-    <p class="foot" data-s style="--d:620ms">Now generated from <code>_chat.txt</code> data, not hand-entered.</p>
-  </div>
-</section>
-
-<!-- 17 · HANDOFF NETWORK -->
-<section class="slide t-orange">
-  <div class="wrap">
-    <div class="eyebrow" data-s style="--d:0ms">New analysis · who replies to who</div>
-    <h2 class="display" data-s style="--d:100ms">Handoff<br><span class="hollow">network</span></h2>
-    <div class="cards" id="handoff-list" data-s style="--d:260ms">
-      <div class="card"><div class="k">Loading</div><div class="v">Pairings</div><p>Finding strongest links...</p></div>
-    </div>
-    <p class="foot" data-s style="--d:620ms">A handoff is two consecutive messages from different people.</p>
-  </div>
-</section>
-
-<!-- 18 · QUESTION CONVERSION -->
-<section class="slide t-ink">
-  <div class="wrap">
-    <div class="eyebrow" data-s style="--d:0ms">New analysis · question effectiveness</div>
-    <h2 class="display" data-s style="--d:100ms">Question<br><span class="ac">conversion</span></h2>
-    <div class="cards" id="question-list" data-s style="--d:260ms">
-      <div class="card"><div class="k">Loading</div><div class="v">Answer rates</div><p>Checking response windows...</p></div>
-    </div>
-    <p class="foot" data-s style="--d:620ms">Shows share of questions answered by someone else within 30 minutes.</p>
-  </div>
-</section>
-
-<!-- 19 · NIGHT OWLS -->
-<section class="slide t-gold">
-  <div class="wrap">
-    <div class="eyebrow" data-s style="--d:0ms">New analysis · late-shift table</div>
-    <h2 class="display" data-s style="--d:100ms">Night<br><span class="hollow">owls</span></h2>
-    <div class="rows" id="owl-list">
-      <div class="row" data-s style="--d:220ms"><span class="nm">Loading</span><span class="bar"><i style="--w:100%;--d:270ms"></i></span><span class="num">...</span></div>
-    </div>
-    <p class="foot" data-s style="--d:620ms">Messages sent between 00:00 and 05:59.</p>
-  </div>
-</section>
-
-<!-- 20 · DAY STARTERS -->
-<section class="slide t-blue">
-  <div class="wrap">
-    <div class="eyebrow" data-s style="--d:0ms">New analysis · who starts the chatter</div>
-    <h2 class="display" data-s style="--d:100ms">Day<br><span class="ac">starters</span></h2>
-    <div class="rows" id="starter-list">
-      <div class="row" data-s style="--d:220ms"><span class="nm">Loading</span><span class="bar"><i style="--w:100%;--d:270ms"></i></span><span class="num">...</span></div>
-    </div>
-    <p class="foot" id="methodology-note" data-s style="--d:620ms">Methodology loading...</p>
-  </div>
-</section>
-
 <!-- FULL TIME -->
 <section class="slide">
   <svg class="pitch" viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice">
