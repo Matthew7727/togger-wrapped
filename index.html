@@ -115,6 +115,14 @@ body{
 .card .k{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.7}
 .card .v{font-family:'Anton',Impact,sans-serif;font-size:24px;text-transform:uppercase;margin:4px 0 2px;color:var(--ac)}
 .card p{font-size:13px;line-height:1.45;opacity:.9}
+.metric-list{margin-top:22px;display:flex;flex-direction:column;gap:10px}
+.metric{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:10px;align-items:center}
+.metric .lab{min-width:0;font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.metric .val{font-family:'IBM Plex Mono',monospace;font-size:11px;opacity:.9;white-space:nowrap}
+.metric .sub{grid-column:1 / -1;font-size:11px;opacity:.78;margin-top:-3px}
+.metric .track{grid-column:1 / -1;height:14px;background:color-mix(in srgb,var(--fg) 14%,transparent);border-radius:2px;overflow:hidden}
+.metric .track i{display:block;height:100%;width:0;background:var(--ac);border-radius:2px;transition:width .9s cubic-bezier(.2,.8,.2,1) var(--d)}
+.active .metric .track i{width:var(--w)}
 .quote{border-left:4px solid var(--ac);padding:6px 0 6px 16px;margin-top:22px;font-size:19px;line-height:1.4;font-weight:500}
 .quote .who{display:block;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.15em;margin-top:10px;opacity:.7;text-transform:uppercase}
 
@@ -164,6 +172,8 @@ body{
   .card .k{font-size:9px;letter-spacing:.10em;line-height:1.35;word-break:break-word}
   .card .v{font-size:20px;line-height:1}
   .card p{font-size:12px}
+  .metric .lab{font-size:12px}
+  .metric .val,.metric .sub{font-size:10px}
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -414,8 +424,8 @@ body{
   <div class="wrap">
     <div class="eyebrow" data-s style="--d:0ms">New analysis · month-by-month</div>
     <h2 class="display" data-s style="--d:100ms">Monthly<br><span class="ac">momentum</span></h2>
-    <div class="cards" id="monthly-list" data-s style="--d:260ms">
-      <div class="card"><div class="k">Loading</div><div class="v">Crunching</div><p>Reading matchday logs...</p></div>
+    <div class="metric-list" id="monthly-list" data-s style="--d:260ms">
+      <div class="metric"><span class="lab">Loading months</span><span class="val">…</span><span class="track"><i style="--w:100%;--d:270ms"></i></span></div>
     </div>
     <p class="foot" data-s style="--d:620ms">Now generated from <code>_chat.txt</code> data, not hand-entered.</p>
   </div>
@@ -426,8 +436,8 @@ body{
   <div class="wrap">
     <div class="eyebrow" data-s style="--d:0ms">New analysis · who replies to who</div>
     <h2 class="display" data-s style="--d:100ms">Handoff<br><span class="hollow">network</span></h2>
-    <div class="cards" id="handoff-list" data-s style="--d:260ms">
-      <div class="card"><div class="k">Loading</div><div class="v">Pairings</div><p>Finding strongest links...</p></div>
+    <div class="metric-list" id="handoff-list" data-s style="--d:260ms">
+      <div class="metric"><span class="lab">Loading pairings</span><span class="val">…</span><span class="track"><i style="--w:100%;--d:270ms"></i></span></div>
     </div>
     <p class="foot" data-s style="--d:620ms">A handoff is two consecutive messages from different people.</p>
   </div>
@@ -438,8 +448,8 @@ body{
   <div class="wrap">
     <div class="eyebrow" data-s style="--d:0ms">New analysis · question effectiveness</div>
     <h2 class="display" data-s style="--d:100ms">Question<br><span class="ac">conversion</span></h2>
-    <div class="cards" id="question-list" data-s style="--d:260ms">
-      <div class="card"><div class="k">Loading</div><div class="v">Answer rates</div><p>Checking response windows...</p></div>
+    <div class="metric-list" id="question-list" data-s style="--d:260ms">
+      <div class="metric"><span class="lab">Loading conversion</span><span class="val">…</span><span class="track"><i style="--w:100%;--d:270ms"></i></span></div>
     </div>
     <p class="foot" data-s style="--d:620ms">Shows share of questions answered by someone else within 30 minutes.</p>
   </div>
@@ -649,14 +659,32 @@ body{
     return d.toLocaleString('en-GB',{month:'short',year:'numeric'});
   }
 
-  function renderCards(containerId, rows, renderFn){
+  function esc(v){
+    var map={'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'};
+    return String(v).replace(/[&<>\"']/g, function(ch){
+      return map[ch];
+    });
+  }
+
+  function renderMetricList(containerId, rows, opts){
     var el=document.getElementById(containerId);
     if(!el)return;
     if(!rows || !rows.length){
-      el.innerHTML='<div class="card"><div class="k">Data error</div><div class="v">Unavailable</div><p>Could not load this stat.</p></div>';
+      el.innerHTML='<div class="metric"><span class="lab">Data unavailable</span><span class="val">n/a</span><span class="track"><i style="--w:100%"></i></span></div>';
       return;
     }
-    el.innerHTML=rows.map(renderFn).join('');
+    var max=rows.reduce(function(acc,row){ return Math.max(acc, opts.score(row)); }, 0) || 1;
+    el.innerHTML=rows.map(function(row,idx){
+      var score=opts.score(row);
+      var width=Math.max(8, Math.round((score/max)*100));
+      var sub=opts.sub ? opts.sub(row) : '';
+      return '<div class="metric" data-s style="--d:'+(220+idx*45)+'ms">'+
+        '<span class="lab">'+esc(opts.label(row))+'</span>'+
+        '<span class="val">'+esc(opts.value(row))+'</span>'+
+        (sub?'<span class="sub">'+esc(sub)+'</span>':'')+
+        '<span class="track"><i style="--w:'+width+'%;--d:'+(270+idx*45)+'ms"></i></span>'+
+      '</div>';
+    }).join('');
   }
 
   function renderRows(containerId, rows){
@@ -675,14 +703,21 @@ body{
 
   function hydrateNewAnalysis(data){
     var m=data.new_metrics || {};
-    renderCards('monthly-list', m.monthly_momentum, function(row){
-      return '<div class="card"><div class="k">'+monthLabel(row.month)+'</div><div class="v">'+row.messages+'</div><p>messages sent</p></div>';
+    renderMetricList('monthly-list', m.monthly_momentum, {
+      label:function(row){ return monthLabel(row.month); },
+      value:function(row){ return row.messages+' msgs'; },
+      score:function(row){ return row.messages; }
     });
-    renderCards('handoff-list', m.top_handoffs, function(row){
-      return '<div class="card"><div class="k">'+row.from+' → '+row.to+'</div><div class="v">'+row.count+'</div><p>direct handoffs</p></div>';
+    renderMetricList('handoff-list', m.top_handoffs, {
+      label:function(row){ return row.from+' → '+row.to; },
+      value:function(row){ return row.count+' handoffs'; },
+      score:function(row){ return row.count; }
     });
-    renderCards('question-list', m.question_conversion, function(row){
-      return '<div class="card"><div class="k">'+row.name+'</div><div class="v">'+row.rate+'%</div><p>'+row.answered+'/'+row.total+' answered within 30m</p></div>';
+    renderMetricList('question-list', m.question_conversion, {
+      label:function(row){ return row.name; },
+      value:function(row){ return row.rate+'%'; },
+      score:function(row){ return row.rate; },
+      sub:function(row){ return row.answered+'/'+row.total+' answered within 30m'; }
     });
     renderRows('owl-list', m.night_owls);
     renderRows('starter-list', m.day_starters);
