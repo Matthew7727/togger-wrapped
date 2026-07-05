@@ -206,7 +206,7 @@ body{
     <div class="rows">
       <div class="row" data-s style="--d:200ms"><span class="nm">James R</span><span class="bar"><i style="--w:100%;--d:250ms"></i></span><span class="num">826</span></div>
       <div class="row" data-s style="--d:250ms"><span class="nm">Jack</span><span class="bar"><i style="--w:58%;--d:300ms"></i></span><span class="num">480</span></div>
-      <div class="row me" data-s style="--d:300ms"><span class="nm">Matt</span><span class="bar"><i style="--w:46%;--d:350ms"></i></span><span class="num">380</span></div>
+      <div class="row" data-s style="--d:300ms"><span class="nm">Matt</span><span class="bar"><i style="--w:46%;--d:350ms"></i></span><span class="num">380</span></div>
       <div class="row" data-s style="--d:350ms"><span class="nm">Charlie</span><span class="bar"><i style="--w:40%;--d:400ms"></i></span><span class="num">329</span></div>
       <div class="row" data-s style="--d:400ms"><span class="nm">Curtis</span><span class="bar"><i style="--w:36%;--d:450ms"></i></span><span class="num">301</span></div>
       <div class="row" data-s style="--d:450ms"><span class="nm">Michael</span><span class="bar"><i style="--w:34%;--d:500ms"></i></span><span class="num">283</span></div>
@@ -553,6 +553,66 @@ body{
     <p class="foot" data-s style="--d:700ms">Every squad needs depth.</p>
   </div>
 </section>
+<!-- 16 · MONTHLY MOMENTUM -->
+<section class="slide t-blue">
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">New analysis · month-by-month</div>
+    <h2 class="display" data-s style="--d:100ms">Monthly<br><span class="ac">momentum</span></h2>
+    <div class="cards" id="monthly-list" data-s style="--d:260ms">
+      <div class="card"><div class="k">Loading</div><div class="v">Crunching</div><p>Reading matchday logs...</p></div>
+    </div>
+    <p class="foot" data-s style="--d:620ms">Now generated from <code>_chat.txt</code> data, not hand-entered.</p>
+  </div>
+</section>
+
+<!-- 17 · HANDOFF NETWORK -->
+<section class="slide t-orange">
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">New analysis · who replies to who</div>
+    <h2 class="display" data-s style="--d:100ms">Handoff<br><span class="hollow">network</span></h2>
+    <div class="cards" id="handoff-list" data-s style="--d:260ms">
+      <div class="card"><div class="k">Loading</div><div class="v">Pairings</div><p>Finding strongest links...</p></div>
+    </div>
+    <p class="foot" data-s style="--d:620ms">A handoff is two consecutive messages from different people.</p>
+  </div>
+</section>
+
+<!-- 18 · QUESTION CONVERSION -->
+<section class="slide t-ink">
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">New analysis · question effectiveness</div>
+    <h2 class="display" data-s style="--d:100ms">Question<br><span class="ac">conversion</span></h2>
+    <div class="cards" id="question-list" data-s style="--d:260ms">
+      <div class="card"><div class="k">Loading</div><div class="v">Answer rates</div><p>Checking response windows...</p></div>
+    </div>
+    <p class="foot" data-s style="--d:620ms">Shows share of questions answered by someone else within 30 minutes.</p>
+  </div>
+</section>
+
+<!-- 19 · NIGHT OWLS -->
+<section class="slide t-gold">
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">New analysis · late-shift table</div>
+    <h2 class="display" data-s style="--d:100ms">Night<br><span class="hollow">owls</span></h2>
+    <div class="rows" id="owl-list">
+      <div class="row" data-s style="--d:220ms"><span class="nm">Loading</span><span class="bar"><i style="--w:100%;--d:270ms"></i></span><span class="num">...</span></div>
+    </div>
+    <p class="foot" data-s style="--d:620ms">Messages sent between 00:00 and 05:59.</p>
+  </div>
+</section>
+
+<!-- 20 · DAY STARTERS -->
+<section class="slide t-blue">
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">New analysis · who starts the chatter</div>
+    <h2 class="display" data-s style="--d:100ms">Day<br><span class="ac">starters</span></h2>
+    <div class="rows" id="starter-list">
+      <div class="row" data-s style="--d:220ms"><span class="nm">Loading</span><span class="bar"><i style="--w:100%;--d:270ms"></i></span><span class="num">...</span></div>
+    </div>
+    <p class="foot" id="methodology-note" data-s style="--d:620ms">Methodology loading...</p>
+  </div>
+</section>
+
 <!-- FULL TIME -->
 <section class="slide">
   <svg class="pitch" viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice">
@@ -571,6 +631,67 @@ body{
 
 <script>
 (function(){
+  function monthLabel(ym){
+    var bits=ym.split('-');
+    var d=new Date(Number(bits[0]), Number(bits[1])-1, 1);
+    return d.toLocaleString('en-GB',{month:'short',year:'numeric'});
+  }
+
+  function renderCards(containerId, rows, renderFn){
+    var el=document.getElementById(containerId);
+    if(!el)return;
+    if(!rows || !rows.length){
+      el.innerHTML='<div class="card"><div class="k">Data error</div><div class="v">Unavailable</div><p>Could not load this stat.</p></div>';
+      return;
+    }
+    el.innerHTML=rows.map(renderFn).join('');
+  }
+
+  function renderRows(containerId, rows){
+    var el=document.getElementById(containerId);
+    if(!el)return;
+    if(!rows || !rows.length){
+      el.innerHTML='<div class="row"><span class="nm">Data error</span><span class="bar"><i style="--w:100%"></i></span><span class="num">n/a</span></div>';
+      return;
+    }
+    var top=rows[0].count || 1;
+    el.innerHTML=rows.map(function(row,idx){
+      var width=Math.max(8,Math.round((row.count/top)*100));
+      return '<div class="row" data-s style="--d:'+(220+idx*45)+'ms"><span class="nm">'+row.name+'</span><span class="bar"><i style="--w:'+width+'%;--d:'+(270+idx*45)+'ms"></i></span><span class="num">'+row.count+'</span></div>';
+    }).join('');
+  }
+
+  function hydrateNewAnalysis(data){
+    var m=data.new_metrics || {};
+    renderCards('monthly-list', m.monthly_momentum, function(row){
+      return '<div class="card"><div class="k">'+monthLabel(row.month)+'</div><div class="v">'+row.messages+'</div><p>messages sent</p></div>';
+    });
+    renderCards('handoff-list', m.top_handoffs, function(row){
+      return '<div class="card"><div class="k">'+row.from+' → '+row.to+'</div><div class="v">'+row.count+'</div><p>direct handoffs</p></div>';
+    });
+    renderCards('question-list', m.question_conversion, function(row){
+      return '<div class="card"><div class="k">'+row.name+'</div><div class="v">'+row.rate+'%</div><p>'+row.answered+'/'+row.total+' answered within 30m</p></div>';
+    });
+    renderRows('owl-list', m.night_owls);
+    renderRows('starter-list', m.day_starters);
+
+    var method=document.getElementById('methodology-note');
+    if(method && data.methodology){
+      method.textContent='Conversation starts use a '+data.methodology.conversation_gap_minutes+'-minute silence gap. Question conversion window: '+data.methodology.question_answer_window_minutes+' minutes.';
+    }
+  }
+
+  fetch('data/summary.json')
+    .then(function(res){
+      if(!res.ok) throw new Error('summary.json request failed: '+res.status);
+      return res.json();
+    })
+    .then(hydrateNewAnalysis)
+    .catch(function(err){
+      console.error('Failed to load data/summary.json', err);
+      hydrateNewAnalysis({});
+    });
+
   var slides=[].slice.call(document.querySelectorAll('.slide'));
   var prog=document.getElementById('progress');
   var reduce=window.matchMedia?window.matchMedia('(prefers-reduced-motion: reduce)').matches:false;

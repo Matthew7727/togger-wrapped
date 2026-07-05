@@ -1,0 +1,165 @@
+{
+  "season": {
+    "start": "2025-03-31",
+    "end": "2026-07-04"
+  },
+  "methodology": {
+    "conversation_gap_minutes": 120,
+    "question_answer_window_minutes": 30,
+    "night_owl_hours": "00:00-05:59",
+    "notes": "Filtered to user messages only (excludes system posts by group sender)."
+  },
+  "new_metrics": {
+    "monthly_momentum": [
+      {
+        "month": "2025-12",
+        "messages": 597
+      },
+      {
+        "month": "2026-04",
+        "messages": 391
+      },
+      {
+        "month": "2025-11",
+        "messages": 389
+      },
+      {
+        "month": "2026-01",
+        "messages": 353
+      },
+      {
+        "month": "2026-02",
+        "messages": 323
+      },
+      {
+        "month": "2026-06",
+        "messages": 253
+      }
+    ],
+    "conversation_starts": [
+      {
+        "name": "James",
+        "count": 123
+      },
+      {
+        "name": "Jack",
+        "count": 65
+      },
+      {
+        "name": "Charlie",
+        "count": 62
+      },
+      {
+        "name": "Matt",
+        "count": 55
+      },
+      {
+        "name": "Curtis",
+        "count": 43
+      }
+    ],
+    "top_handoffs": [
+      {
+        "from": "James",
+        "to": "Jack",
+        "count": 120
+      },
+      {
+        "from": "Jack",
+        "to": "James",
+        "count": 96
+      },
+      {
+        "from": "Curtis",
+        "to": "James",
+        "count": 85
+      },
+      {
+        "from": "Charlie",
+        "to": "James",
+        "count": 76
+      },
+      {
+        "from": "James",
+        "to": "Curtis",
+        "count": 71
+      }
+    ],
+    "question_conversion": [
+      {
+        "name": "Curtis",
+        "answered": 39,
+        "total": 44,
+        "rate": 89
+      },
+      {
+        "name": "Tom",
+        "answered": 31,
+        "total": 35,
+        "rate": 89
+      },
+      {
+        "name": "Matt",
+        "answered": 40,
+        "total": 49,
+        "rate": 82
+      },
+      {
+        "name": "James",
+        "answered": 103,
+        "total": 128,
+        "rate": 80
+      },
+      {
+        "name": "Joe",
+        "answered": 4,
+        "total": 5,
+        "rate": 80
+      }
+    ],
+    "night_owls": [
+      {
+        "name": "James",
+        "count": 74
+      },
+      {
+        "name": "Charlie",
+        "count": 71
+      },
+      {
+        "name": "Jack",
+        "count": 50
+      },
+      {
+        "name": "Joseph",
+        "count": 40
+      },
+      {
+        "name": "Matt",
+        "count": 38
+      }
+    ],
+    "day_starters": [
+      {
+        "name": "James",
+        "count": 64
+      },
+      {
+        "name": "Jack",
+        "count": 42
+      },
+      {
+        "name": "Charlie",
+        "count": 40
+      },
+      {
+        "name": "Michael",
+        "count": 30
+      },
+      {
+        "name": "Joseph",
+        "count": 27
+      }
+    ]
+  }
+}
