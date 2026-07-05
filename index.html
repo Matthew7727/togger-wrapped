@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0B3D2E">
+<meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Joe's BBQ Togger — Wrapped 25/26">
+<meta property="og:description" content="4,031 messages. 655 photos. 143 polls. One head injury. The official season review — tap through.">
+<meta property="og:url" content="https://matthew7727.github.io/togger-wrapped/">
+<meta property="og:image" content="https://matthew7727.github.io/togger-wrapped/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<title>Joe's BBQ Togger — Wrapped 25/26</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --grass:#0B3D2E; --grass2:#0E4A38;
+  --ink:#0A1512;
+  --chalk:#F4F0E6;
+  --orange:#FF5C1F;
+  --blue:#2743FF;
+  --gold:#FFC531;
+  --d:0ms;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{
+  font-family:'Space Grotesk',system-ui,sans-serif;
+  background:var(--ink); color:var(--chalk);
+  overflow:hidden; user-select:none; -webkit-user-select:none;
+}
+#stage{position:fixed;inset:0}
+
+/* ---------- themes ---------- */
+.slide{--bg:var(--grass);--fg:var(--chalk);--ac:var(--gold);--ac2:var(--orange)}
+.t-ink   {--bg:var(--ink);   --fg:var(--chalk); --ac:var(--orange); --ac2:var(--gold)}
+.t-orange{--bg:var(--orange);--fg:#160B04;      --ac:var(--chalk);  --ac2:#160B04}
+.t-blue  {--bg:var(--blue);  --fg:var(--chalk); --ac:var(--gold);   --ac2:var(--chalk)}
+.t-gold  {--bg:var(--gold);  --fg:#171004;      --ac:#171004;       --ac2:var(--blue)}
+
+/* ---------- slide frame ---------- */
+.slide{
+  position:absolute; inset:0; background:var(--bg); color:var(--fg);
+  opacity:0; pointer-events:none; transition:opacity .35s ease;
+  display:flex; flex-direction:column; justify-content:center;
+  padding:max(64px,env(safe-area-inset-top)) 28px max(48px,env(safe-area-inset-bottom));
+  overflow:hidden;
+}
+.slide.active{opacity:1; pointer-events:auto}
+.wrap{width:100%;max-width:520px;margin:0 auto;position:relative;z-index:2}
+
+/* chalk pitch markings */
+.pitch{position:absolute;inset:0;z-index:0;opacity:.10;pointer-events:none}
+.pitch line,.pitch circle,.pitch path,.pitch rect{stroke:var(--fg);fill:none;stroke-width:2.5}
+/* grain */
+.slide::after{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- type ---------- */
+.eyebrow{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;opacity:.75;margin-bottom:14px;
+}
+.display{
+  font-family:'Anton',Impact,'Arial Narrow',sans-serif;
+  text-transform:uppercase;line-height:.92;letter-spacing:.005em;
+  font-size:clamp(46px,13.5vw,88px);
+}
+.display .hollow{
+  color:transparent;-webkit-text-stroke:2px var(--fg);
+}
+.display .ac{color:var(--ac)}
+.giant{
+  font-family:'Anton',Impact,sans-serif;
+  font-size:clamp(88px,26vw,170px);line-height:.9;color:var(--ac);
+  font-variant-numeric:tabular-nums;
+}
+.giant small{font-size:.32em;color:var(--fg);display:block;letter-spacing:.04em;margin-top:6px}
+.lede{font-size:16px;line-height:1.5;margin-top:18px;max-width:44ch}
+.lede b{color:var(--ac)}
+.foot{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;opacity:.65;margin-top:26px;line-height:1.7}
+.hint{position:absolute;bottom:max(20px,env(safe-area-inset-bottom));left:0;right:0;text-align:center;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;opacity:.55;animation:pulse 2.2s infinite;z-index:2}
+@keyframes pulse{0%,100%{opacity:.3}50%{opacity:.75}}
+
+/* ---------- reveal choreography ---------- */
+[data-s]{opacity:0;transform:translateY(22px);transition:opacity .5s ease var(--d),transform .55s cubic-bezier(.2,.8,.2,1) var(--d)}
+.active [data-s]{opacity:1;transform:none}
+
+/* ---------- bars ---------- */
+.rows{margin-top:22px;display:flex;flex-direction:column;gap:9px}
+.row{display:grid;grid-template-columns:74px 1fr 44px;align-items:center;gap:10px;font-size:13px;font-weight:500}
+.row .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .num{font-family:'IBM Plex Mono',monospace;font-size:11px;text-align:right;opacity:.85}
+.bar{height:16px;background:color-mix(in srgb,var(--fg) 14%,transparent);border-radius:2px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--ac);border-radius:2px;transition:width .9s cubic-bezier(.2,.8,.2,1) var(--d)}
+.row.me .bar i{background:var(--ac2)}
+.row.me .nm{color:var(--ac2);font-weight:700}
+.active .bar i{width:var(--w)}
+
+/* ---------- chips / cards ---------- */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.chip{border:1.5px solid color-mix(in srgb,var(--fg) 40%,transparent);border-radius:999px;
+  padding:7px 13px;font-size:13px;font-weight:500}
+.chip b{color:var(--ac)}
+.cards{display:flex;flex-direction:column;gap:12px;margin-top:22px}
+.card{border:2px solid color-mix(in srgb,var(--fg) 25%,transparent);border-radius:10px;padding:14px 16px;background:color-mix(in srgb,var(--fg) 5%,transparent)}
+.card .k{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.7}
+.card .v{font-family:'Anton',Impact,sans-serif;font-size:24px;text-transform:uppercase;margin:4px 0 2px;color:var(--ac)}
+.card p{font-size:13px;line-height:1.45;opacity:.9}
+.quote{border-left:4px solid var(--ac);padding:6px 0 6px 16px;margin-top:22px;font-size:19px;line-height:1.4;font-weight:500}
+.quote .who{display:block;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.15em;margin-top:10px;opacity:.7;text-transform:uppercase}
+
+.bench{margin-top:24px;display:flex;flex-direction:column;gap:14px;font-size:14px;line-height:1.5}
+.bench b{color:var(--ac2);font-family:'Anton',Impact,sans-serif;font-size:16px;letter-spacing:.02em;text-transform:uppercase;margin-right:4px}
+/* awards grid */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+.trophy{border:2px solid var(--ac);border-radius:10px;padding:12px;background:color-mix(in srgb,var(--ac) 7%,transparent)}
+.trophy .t{font-family:'Anton',Impact,sans-serif;font-size:16px;text-transform:uppercase;line-height:1.05}
+.trophy .w{font-size:13px;font-weight:700;margin-top:6px}
+.trophy .s{font-family:'IBM Plex Mono',monospace;font-size:10px;opacity:.75;margin-top:3px;line-height:1.5}
+
+/* emoji podium */
+.pod{display:flex;align-items:flex-end;gap:14px;margin-top:26px}
+.pod div{text-align:center;flex:1}
+.pod .e{font-size:clamp(40px,12vw,64px);line-height:1}
+.pod .c{font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:8px;opacity:.8}
+.pod .plinth{background:color-mix(in srgb,var(--fg) 14%,transparent);border-radius:4px 4px 0 0;margin-top:10px}
+.pod .p1 .plinth{height:64px;background:var(--ac)}
+.pod .p2 .plinth{height:44px}
+.pod .p3 .plinth{height:30px}
+
+/* stat strip */
+.strip{display:flex;gap:22px;margin-top:26px;flex-wrap:wrap}
+.strip div .n{font-family:'Anton',Impact,sans-serif;font-size:30px;color:var(--ac)}
+.strip div .l{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;opacity:.7;margin-top:2px}
+
+/* ---------- progress + nav ---------- */
+#progress{position:fixed;top:max(14px,env(safe-area-inset-top));left:12px;right:12px;display:flex;gap:3px;z-index:50}
+#progress span{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.28);overflow:hidden}
+#progress span i{display:block;height:100%;width:0;background:#fff}
+#progress span.done i{width:100%}
+#progress span.cur i{width:100%;transition:width .3s}
+.dark-p span{background:rgba(0,0,0,.22)} .dark-p span i{background:#111}
+.zone{position:fixed;top:0;bottom:0;width:34%;z-index:40;cursor:pointer}
+#back{left:0}#fwd{right:0;width:66%}
+#restart{font:inherit;margin-top:30px;background:var(--fg);color:var(--bg);border:0;border-radius:999px;
+  padding:14px 26px;font-weight:700;font-size:15px;cursor:pointer;position:relative;z-index:60}
+
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+  [data-s]{opacity:1;transform:none}
+  .active .bar i{transition:none}
+}
+</style>
+</head>
+<body>
+
+<div id="progress" aria-hidden="true"></div>
+<div class="zone" id="back" aria-label="Previous"></div>
+<div class="zone" id="fwd" aria-label="Next"></div>
+
+<div id="stage">
+
+<!-- 0 · COVER -->
+<section class="slide" data-theme="">
+  <svg class="pitch" viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice">
+    <line x1="0" y1="400" x2="400" y2="400"/><circle cx="200" cy="400" r="90"/>
+    <rect x="90" y="-2" width="220" height="110"/><rect x="90" y="692" width="220" height="110"/>
+    <path d="M0 20 A20 20 0 0 0 20 0"/><path d="M380 0 A20 20 0 0 0 400 20"/>
+  </svg>
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">Official season review · est. group 2023</div>
+    <h1 class="display" data-s style="--d:120ms">Joe's<br>BBQ<br>Togger<br><span class="hollow">Wrapped</span></h1>
+    <p class="lede" data-s style="--d:280ms">The <b>2025/26 season</b> · 31 Mar 2025 → 4 Jul 2026<br>19 lads. One pitch. Zero trophies.</p>
+  </div>
+  <div class="hint">▸ tap to kick off ▸</div>
+</section>
+
+<!-- 1 · SEASON IN NUMBERS -->
+<section class="slide t-ink">
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">Full-time score</div>
+    <div class="giant" data-s style="--d:100ms"><span class="count" data-to="4031">0</span><small>messages sent</small></div>
+    <div class="strip" data-s style="--d:320ms">
+      <div><div class="n"><span class="count" data-to="24593">0</span></div><div class="l">words</div></div>
+      <div><div class="n"><span class="count" data-to="655">0</span></div><div class="l">photos &amp; clips</div></div>
+      <div><div class="n">321<span style="font-size:.55em">/461</span></div><div class="l">days active</div></div>
+    </div>
+    <p class="foot" data-s style="--d:500ms">That's 8.8 messages a day, every day,<br>for fifteen straight months. Committed.</p>
+  </div>
+</section>
+
+<!-- 2 · LEAGUE TABLE -->
+<section class="slide t-orange">
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">The league table · messages sent</div>
+    <h2 class="display" data-s style="--d:100ms;font-size:clamp(38px,11vw,64px)">Top of<br>the table</h2>
+    <div class="rows">
+      <div class="row" data-s style="--d:200ms"><span class="nm">James R</span><span class="bar"><i style="--w:100%;--d:250ms"></i></span><span class="num">826</span></div>
+      <div class="row" data-s style="--d:250ms"><span class="nm">Jack</span><span class="bar"><i style="--w:58%;--d:300ms"></i></span><span class="num">480</span></div>
+      <div class="row me" data-s style="--d:300ms"><span class="nm">Matt</span><span class="bar"><i style="--w:46%;--d:350ms"></i></span><span class="num">380</span></div>
+      <div class="row" data-s style="--d:350ms"><span class="nm">Charlie</span><span class="bar"><i style="--w:40%;--d:400ms"></i></span><span class="num">329</span></div>
+      <div class="row" data-s style="--d:400ms"><span class="nm">Curtis</span><span class="bar"><i style="--w:36%;--d:450ms"></i></span><span class="num">301</span></div>
+      <div class="row" data-s style="--d:450ms"><span class="nm">Michael</span><span class="bar"><i style="--w:34%;--d:500ms"></i></span><span class="num">283</span></div>
+      <div class="row" data-s style="--d:500ms"><span class="nm">Joseph</span><span class="bar"><i style="--w:32%;--d:550ms"></i></span><span class="num">265</span></div>
+      <div class="row" data-s style="--d:550ms"><span class="nm">Lewis</span><span class="bar"><i style="--w:29%;--d:600ms"></i></span><span class="num">238</span></div>
+      <div class="row" data-s style="--d:600ms"><span class="nm">Tom</span><span class="bar"><i style="--w:25%;--d:650ms"></i></span><span class="num">207</span></div>
+    </div>
+    <p class="foot" data-s style="--d:750ms">James R posted one in every five messages.<br>He is the engine. He cannot be stopped.</p>
+  </div>
+</section>
+
+<!-- 3 · DEMOCRACY -->
+<section class="slide t-blue">
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">Governance report</div>
+    <div class="giant" data-s style="--d:100ms"><span class="count" data-to="143">0</span><small>polls created</small></div>
+    <p class="lede" data-s style="--d:300ms"><b>63</b> of them were the weekly <b>“Foooootbaaaall”</b> poll. Nothing in this chat gets decided — it gets <b>voted on</b>.</p>
+    <div class="chips" data-s style="--d:450ms">
+      <span class="chip">James R <b>31</b></span>
+      <span class="chip">Jack <b>29</b></span>
+      <span class="chip">Joseph <b>17</b></span>
+      <span class="chip">Lewis <b>12</b></span>
+      <span class="chip">Charlie <b>11</b></span>
+    </div>
+    <p class="foot" data-s style="--d:600ms">Returning officers, the lot of you.<br>The Electoral Commission would be proud.</p>
+  </div>
+</section>
+
+<!-- 4 · SATURDAY IS SACRED -->
+<section class="slide">
+  <svg class="pitch" viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice">
+    <circle cx="200" cy="400" r="90"/><line x1="0" y1="400" x2="400" y2="400"/>
+  </svg>
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">When the chat comes alive</div>
+    <h2 class="display" data-s style="--d:100ms">Saturday<br><span class="ac">is sacred</span></h2>
+    <div class="rows">
+      <div class="row" data-s style="--d:220ms"><span class="nm">Mon</span><span class="bar"><i style="--w:21%;--d:270ms"></i></span><span class="num">264</span></div>
+      <div class="row" data-s style="--d:260ms"><span class="nm">Tue</span><span class="bar"><i style="--w:15%;--d:310ms"></i></span><span class="num">188</span></div>
+      <div class="row" data-s style="--d:300ms"><span class="nm">Wed</span><span class="bar"><i style="--w:26%;--d:350ms"></i></span><span class="num">336</span></div>
+      <div class="row" data-s style="--d:340ms"><span class="nm">Thu</span><span class="bar"><i style="--w:52%;--d:390ms"></i></span><span class="num">673</span></div>
+      <div class="row" data-s style="--d:380ms"><span class="nm">Fri</span><span class="bar"><i style="--w:61%;--d:430ms"></i></span><span class="num">791</span></div>
+      <div class="row me" data-s style="--d:420ms"><span class="nm">Sat</span><span class="bar"><i style="--w:100%;--d:470ms"></i></span><span class="num">1288</span></div>
+      <div class="row" data-s style="--d:460ms"><span class="nm">Sun</span><span class="bar"><i style="--w:38%;--d:510ms"></i></span><span class="num">491</span></div>
+    </div>
+    <p class="foot" data-s style="--d:640ms">One in three messages lands on a Saturday.<br>Peak hour: 8pm. Second wind: 8am — pre-footy logistics.</p>
+  </div>
+</section>
+
+<!-- 5 · CAMERA ROLL -->
+<section class="slide t-ink">
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">The camera roll</div>
+    <div class="giant" data-s style="--d:100ms"><span class="count" data-to="655">0</span><small>attachments shared</small></div>
+    <div class="chips" data-s style="--d:320ms">
+      <span class="chip"><b>505</b> photos</span>
+      <span class="chip"><b>84</b> GIFs</span>
+      <span class="chip"><b>48</b> videos</span>
+      <span class="chip"><b>11</b> stickers</span>
+      <span class="chip"><b>3</b> voice notes</span>
+    </div>
+    <p class="lede" data-s style="--d:470ms">Media king: <b>James R</b> with 137. But the single greatest drop belongs to <b>Michael</b>: <b>79 photos in a row</b>, unanswered, the morning after a big one.</p>
+    <p class="foot" data-s style="--d:620ms">Three voice notes in fifteen months.<br>This is a texting group. Respect the format.</p>
+  </div>
+</section>
+
+<!-- 6 · BIG DAYS -->
+<section class="slide t-gold">
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">Fixtures of the season</div>
+    <h2 class="display" data-s style="--d:100ms;font-size:clamp(38px,11vw,64px)">The big<br>days out</h2>
+    <div class="cards">
+      <div class="card" data-s style="--d:240ms">
+        <div class="k">11 Apr 2026 · 146 messages</div>
+        <div class="v">Grand National Day</div>
+        <p>Delayed trains, early-kickoff sweepstake, and Matt's 40-photo victory lap. The season's Everest.</p>
+      </div>
+      <div class="card" data-s style="--d:360ms">
+        <div class="k">10 Jan 2026 · 118 messages</div>
+        <div class="v">Cup misery + darts</div>
+        <p>“Proper Everton that.” A strict 19:00 deadline was issued for the darts. Democracy prevailed.</p>
+      </div>
+      <div class="card" data-s style="--d:480ms">
+        <div class="k">25 Dec 2025 · 82 messages</div>
+        <div class="v">Christmas Day</div>
+        <p>Yes — 82 messages on Christmas Day itself. Family time is important, but so is the chat.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · THE CURTIS INCIDENT -->
+<section class="slide t-blue">
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">Incident report · 1 Nov 2025</div>
+    <h2 class="display" data-s style="--d:100ms">The Curtis<br><span class="hollow">incident</span></h2>
+    <div class="quote" data-s style="--d:280ms">“They put 9 stables in my head. Hurt like a bastard.”
+      <span class="who">— Curtis. Survivor. (staples, presumably)</span>
+    </div>
+    <p class="lede" data-s style="--d:460ms">Six minutes of genuine concern later, James R:<br><b>“Still need you for footy tomorrow if that's okay 👍🏻”</b></p>
+    <p class="foot" data-s style="--d:620ms">Curtis's verdict: “Think I'll enjoy a cheeky WFH week.”<br>The lad is fine. The squad depth was the real worry.</p>
+  </div>
+</section>
+
+<!-- 8 · DICTIONARY -->
+<section class="slide t-orange">
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">The official dictionary</div>
+    <div class="giant" data-s style="--d:100ms"><span class="count" data-to="102">0</span><small>uses of “youse”</small></div>
+    <p class="lede" data-s style="--d:300ms">Signature vocabulary, scientifically verified:</p>
+    <div class="chips" data-s style="--d:420ms">
+      <span class="chip">James R: <b>“goanna”</b> ×8 — 100% his</span>
+      <span class="chip">Tom: <b>“gucci”</b> ×6</span>
+      <span class="chip">Joseph: <b>“yous”</b> ×9 (the minimalist)</span>
+      <span class="chip">Jack: said <b>“Curtis”</b> ×14 — mildly obsessed</span>
+    </div>
+    <p class="foot" data-s style="--d:580ms">“Goanna” is a large Australian lizard.<br>James means “gonna”. He will not be corrected.</p>
+  </div>
+</section>
+
+<!-- 9 · LANGUAGE, LADS -->
+<section class="slide t-ink">
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">Language, lads · 53 total offences</div>
+    <h2 class="display" data-s style="--d:100ms">Swear<br><span class="ac">league</span></h2>
+    <div class="rows">
+      <div class="row me" data-s style="--d:220ms"><span class="nm">shite</span><span class="bar"><i style="--w:100%;--d:270ms"></i></span><span class="num">13</span></div>
+      <div class="row" data-s style="--d:270ms"><span class="nm">fucking</span><span class="bar"><i style="--w:54%;--d:320ms"></i></span><span class="num">7</span></div>
+      <div class="row" data-s style="--d:320ms"><span class="nm">fuck</span><span class="bar"><i style="--w:38%;--d:370ms"></i></span><span class="num">5</span></div>
+      <div class="row" data-s style="--d:370ms"><span class="nm">shit</span><span class="bar"><i style="--w:38%;--d:420ms"></i></span><span class="num">5</span></div>
+      <div class="row" data-s style="--d:420ms"><span class="nm">bastard</span><span class="bar"><i style="--w:23%;--d:470ms"></i></span><span class="num">3</span></div>
+    </div>
+    <p class="foot" data-s style="--d:600ms">“Shite” clear at the top, as nature intended.<br>One swear every 76 messages — honestly quite restrained.</p>
+  </div>
+</section>
+
+<!-- 10 · EMOJI -->
+<section class="slide">
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">Emoji of the season</div>
+    <div class="pod">
+      <div class="p2" data-s style="--d:250ms"><div class="e">🤣</div><div class="c">×21</div><div class="plinth"></div></div>
+      <div class="p1" data-s style="--d:120ms"><div class="e">👀</div><div class="c">×24 · champion</div><div class="plinth"></div></div>
+      <div class="p3" data-s style="--d:350ms"><div class="e">😭</div><div class="c">×14</div><div class="plinth"></div></div>
+    </div>
+    <p class="lede" data-s style="--d:500ms">Personal signatures on file:</p>
+    <div class="chips" data-s style="--d:600ms">
+      <span class="chip">Curtis <b>🦈</b> — nobody knows why</span>
+      <span class="chip">Jack <b>🫡</b></span>
+      <span class="chip">James R <b>😊</b></span>
+      <span class="chip">Matt <b>👀</b></span>
+    </div>
+    <p class="foot" data-s style="--d:720ms">265 emoji in 24,593 words. Emotionally efficient.</p>
+  </div>
+</section>
+
+<!-- 11 · SPEED & SILENCE -->
+<section class="slide t-blue">
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">Response-time trials · median</div>
+    <h2 class="display" data-s style="--d:100ms">Fastest<br><span class="ac">fingers</span></h2>
+    <div class="rows">
+      <div class="row me" data-s style="--d:220ms"><span class="nm">Edward</span><span class="bar"><i style="--w:100%;--d:270ms"></i></span><span class="num">50s</span></div>
+      <div class="row" data-s style="--d:270ms"><span class="nm">Joseph</span><span class="bar"><i style="--w:78%;--d:320ms"></i></span><span class="num">64s</span></div>
+      <div class="row" data-s style="--d:320ms"><span class="nm">Charlie</span><span class="bar"><i style="--w:77%;--d:370ms"></i></span><span class="num">65s</span></div>
+      <div class="row" data-s style="--d:370ms"><span class="nm">Lewis</span><span class="bar"><i style="--w:68%;--d:420ms"></i></span><span class="num">74s</span></div>
+      <div class="row" data-s style="--d:420ms"><span class="nm">Matt</span><span class="bar"><i style="--w:61%;--d:470ms"></i></span><span class="num">82s</span></div>
+    </div>
+    <p class="lede" data-s style="--d:560ms">James R kicked off <b>96 conversations</b> and had the last word <b>89 times</b>. Opener, closer, complete player.</p>
+    <p class="foot" data-s style="--d:700ms">Longest silence: 9.9 days in August. Broken, of course,<br>by James R: “Who is up for Jaws on IMAX?”<br>Longest streak: 13 straight days of chat, Oct 2025.</p>
+  </div>
+</section>
+
+<!-- 12 · AWARDS -->
+<section class="slide t-gold">
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">End-of-season awards night</div>
+    <h2 class="display" data-s style="--d:100ms;font-size:clamp(38px,11vw,60px)">The<br>Toggers</h2>
+    <div class="grid2">
+      <div class="trophy" data-s style="--d:240ms"><div class="t">🏆 The Engine</div><div class="w">James R</div><div class="s">826 msgs · never stops running</div></div>
+      <div class="trophy" data-s style="--d:300ms"><div class="t">⚡ The Flash</div><div class="w">Edward</div><div class="s">50-second median reply</div></div>
+      <div class="trophy" data-s style="--d:360ms"><div class="t">🦈 The Shark</div><div class="w">Curtis</div><div class="s">5.4 words per message · silent, deadly</div></div>
+      <div class="trophy" data-s style="--d:420ms"><div class="t">📜 The Novelist</div><div class="w">Charlie</div><div class="s">403-character epic (band gig promo)</div></div>
+      <div class="trophy" data-s style="--d:480ms"><div class="t">🗳️ Returning Officer</div><div class="w">Jack</div><div class="s">29 polls filed (James R's 31 — he can't win everything)</div></div>
+      <div class="trophy" data-s style="--d:540ms"><div class="t">🧤 Clean Sheet</div><div class="w">Matt</div><div class="s">380 messages, zero deleted. No regrets.</div></div>
+    </div>
+    <p class="foot" data-s style="--d:680ms">23 messages were deleted this season. We saw nothing.<br>25 were quietly edited. We saw everything.</p>
+  </div>
+</section>
+
+
+<!-- CARD 1 · JAMES R'S -->
+<section class="slide t-ink">
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">Player card · #1 in the league</div>
+    <h2 class="display" data-s style="--d:100ms">James R's<br><span class="hollow">season</span></h2>
+    <div class="strip" data-s style="--d:280ms"><div><div class="n">826</div><div class="l">messages</div></div><div><div class="n">137</div><div class="l">photos &amp; clips</div></div><div><div class="n">96</div><div class="l">convos started</div></div><div><div class="n">89</div><div class="l">last words</div></div></div>
+    <p class="lede" data-s style="--d:440ms">Signature <b>😊</b>. Opener, closer, and the voice behind <b>2 of the group's 3 voice notes</b>.</p>
+    <p class="foot" data-s style="--d:600ms">Says “goanna”. Means “gonna”.<br>Eight sightings. Zero corrections accepted.</p>
+  </div>
+</section>
+<!-- CARD 2 · JACK'S -->
+<section class="slide t-blue">
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">Player card · #2 in the league</div>
+    <h2 class="display" data-s style="--d:100ms">Jack's<br><span class="hollow">season</span></h2>
+    <div class="strip" data-s style="--d:280ms"><div><div class="n">480</div><div class="l">messages</div></div><div><div class="n">29</div><div class="l">polls filed</div></div><div><div class="n">19</div><div class="l">footy mentions</div></div><div><div class="n">10</div><div class="l">swears</div></div></div>
+    <p class="lede" data-s style="--d:440ms">Signature <b>🫡</b>. Swear-league champion, three ALL-CAPS outbursts, and said <b>“Curtis” fourteen times</b>.</p>
+    <p class="foot" data-s style="--d:600ms">The fixture secretary.<br>Powered by polls and mild frustration.</p>
+  </div>
+</section>
+<!-- CARD 3 · MATT'S -->
+<section class="slide t-orange">
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">Player card · #3 in the league</div>
+    <h2 class="display" data-s style="--d:100ms">Matt's<br><span class="hollow">season</span></h2>
+    <div class="strip" data-s style="--d:280ms"><div><div class="n">380</div><div class="l">messages</div></div><div><div class="n">99</div><div class="l">photos &amp; clips</div></div><div><div class="n">82s</div><div class="l">median reply</div></div><div><div class="n">0</div><div class="l">deleted</div></div></div>
+    <p class="lede" data-s style="--d:440ms">Signature <b>👀</b>. <b>40 messages in a row</b> on Grand National day — second only to Michael's 79. Zero deletions all season.</p>
+    <p class="foot" data-s style="--d:600ms">Shows up, posts the photos,<br>never deletes the evidence.</p>
+  </div>
+</section>
+<!-- CARD 4 · CHARLIE'S -->
+<section class="slide ">
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">Player card · #4 in the league</div>
+    <h2 class="display" data-s style="--d:100ms">Charlie's<br><span class="hollow">season</span></h2>
+    <div class="strip" data-s style="--d:280ms"><div><div class="n">328</div><div class="l">messages</div></div><div><div class="n">65s</div><div class="l">median reply</div></div><div><div class="n">48</div><div class="l">convos started</div></div><div><div class="n">11.0</div><div class="l">words / msg</div></div></div>
+    <p class="lede" data-s style="--d:440ms">Signature <b>🤣</b>. Author of the season's <b>longest message</b> — a 403-character band-gig promo — and second-most conversations started.</p>
+    <p class="foot" data-s style="--d:600ms">Fast fingers. Long paragraphs.<br>Tickets available on the door.</p>
+  </div>
+</section>
+<!-- CARD 5 · CURTIS'S -->
+<section class="slide t-gold">
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">Player card · #5 in the league</div>
+    <h2 class="display" data-s style="--d:100ms">Curtis's<br><span class="hollow">season</span></h2>
+    <div class="strip" data-s style="--d:280ms"><div><div class="n">301</div><div class="l">messages</div></div><div><div class="n">15</div><div class="l">GIFs</div></div><div><div class="n">5.4</div><div class="l">words / msg</div></div><div><div class="n">22</div><div class="l">msgs after 11pm</div></div></div>
+    <p class="lede" data-s style="--d:440ms">Signature <b>🦈</b> — nobody knows why. Nine staples, one “cheeky WFH week”, and the league's most active man after dark.</p>
+    <p class="foot" data-s style="--d:600ms">Communicates in GIFs and shark emojis.<br>Medically cleared. Emotionally unknowable.</p>
+  </div>
+</section>
+<!-- CARD 6 · MICHAEL'S -->
+<section class="slide t-ink">
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">Player card · #6 in the league</div>
+    <h2 class="display" data-s style="--d:100ms">Michael's<br><span class="hollow">season</span></h2>
+    <div class="strip" data-s style="--d:280ms"><div><div class="n">283</div><div class="l">messages</div></div><div><div class="n">123</div><div class="l">photos &amp; clips</div></div><div><div class="n">79</div><div class="l">in a row · record</div></div><div><div class="n">0</div><div class="l">swears</div></div></div>
+    <p class="lede" data-s style="--d:440ms">Signature <b>👋</b> — he sent this chat's <b>very first message</b>. Club-record 79-photo drop, and not a single swear or post-11pm text all season.</p>
+    <p class="foot" data-s style="--d:600ms">Politest man in the league.<br>Camera roll of a war photographer.</p>
+  </div>
+</section>
+<!-- CARD 7 · JOSEPH'S -->
+<section class="slide t-blue">
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">Player card · #7 in the league</div>
+    <h2 class="display" data-s style="--d:100ms">Joseph's<br><span class="hollow">season</span></h2>
+    <div class="strip" data-s style="--d:280ms"><div><div class="n">264</div><div class="l">messages</div></div><div><div class="n">21</div><div class="l">laughs · top</div></div><div><div class="n">64s</div><div class="l">median reply</div></div><div><div class="n">17</div><div class="l">polls filed</div></div></div>
+    <p class="lede" data-s style="--d:440ms">Signature <b>🤣</b>. The group's biggest laugher, its keenest quiet editor (<b>7 edits</b>) and its earliest riser.</p>
+    <p class="foot" data-s style="--d:600ms">Says “yous” — that's “youse”<br>with the fat trimmed off.</p>
+  </div>
+</section>
+<!-- CARD 8 · LEWIS'S -->
+<section class="slide t-orange">
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">Player card · #8 in the league</div>
+    <h2 class="display" data-s style="--d:100ms">Lewis's<br><span class="hollow">season</span></h2>
+    <div class="strip" data-s style="--d:280ms"><div><div class="n">238</div><div class="l">messages</div></div><div><div class="n">18</div><div class="l">GIFs · top</div></div><div><div class="n">74s</div><div class="l">median reply</div></div><div><div class="n">12</div><div class="l">polls filed</div></div></div>
+    <p class="lede" data-s style="--d:440ms">Signature <b>👀</b>. Undisputed <b>GIF king</b> — eighteen deployed, always the correct one.</p>
+    <p class="foot" data-s style="--d:600ms">Why type a feeling<br>when a GIF already exists?</p>
+  </div>
+</section>
+<!-- CARD 9 · TOM'S -->
+<section class="slide ">
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">Player card · #9 in the league</div>
+    <h2 class="display" data-s style="--d:100ms">Tom's<br><span class="hollow">season</span></h2>
+    <div class="strip" data-s style="--d:280ms"><div><div class="n">207</div><div class="l">messages</div></div><div><div class="n">260s</div><div class="l">median reply</div></div><div><div class="n">5.4</div><div class="l">words / msg</div></div><div><div class="n">4</div><div class="l">stickers · top</div></div></div>
+    <p class="lede" data-s style="--d:440ms">Signature <b>👀🧐</b>. Sticker connoisseur. Says <b>“gucci”</b>, means everything is fine.</p>
+    <p class="foot" data-s style="--d:600ms">Reads it. Considers it. Replies<br>four minutes later: “gucci”.</p>
+  </div>
+</section>
+<!-- CARD 10 · EDWARD'S -->
+<section class="slide t-gold">
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">Player card · #10 in the league</div>
+    <h2 class="display" data-s style="--d:100ms">Edward's<br><span class="hollow">season</span></h2>
+    <div class="strip" data-s style="--d:280ms"><div><div class="n">182</div><div class="l">messages</div></div><div><div class="n">50s</div><div class="l">reply · fastest</div></div><div><div class="n">7</div><div class="l">questions asked</div></div><div><div class="n">16</div><div class="l">convos started</div></div></div>
+    <p class="lede" data-s style="--d:440ms">Signature <b>🤣</b>. Fastest fingers in the league — and just <b>7 questions in 182 messages</b>.</p>
+    <p class="foot" data-s style="--d:600ms">Answers everything.<br>Questions nothing.</p>
+  </div>
+</section>
+<!-- CARD 11 · AARON'S -->
+<section class="slide t-ink">
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">Player card · #11 in the league</div>
+    <h2 class="display" data-s style="--d:100ms">Aaron's<br><span class="hollow">season</span></h2>
+    <div class="strip" data-s style="--d:280ms"><div><div class="n">158</div><div class="l">messages</div></div><div><div class="n">264s</div><div class="l">median reply</div></div><div><div class="n">6</div><div class="l">videos</div></div><div><div class="n">19</div><div class="l">convos started</div></div></div>
+    <p class="lede" data-s style="--d:440ms">Signature <b>🤪</b>. Slowest median reply in the league — and, on National day, a delayed train to match.</p>
+    <p class="foot" data-s style="--d:600ms">Worth the wait.<br>Usually.</p>
+  </div>
+</section>
+<!-- CARD 12 · JAMIE'S -->
+<section class="slide t-blue">
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">Player card · #12 in the league</div>
+    <h2 class="display" data-s style="--d:100ms">Jamie's<br><span class="hollow">season</span></h2>
+    <div class="strip" data-s style="--d:280ms"><div><div class="n">142</div><div class="l">messages</div></div><div><div class="n">104s</div><div class="l">median reply</div></div><div><div class="n">10</div><div class="l">GIFs</div></div><div><div class="n">4</div><div class="l">deleted · top</div></div></div>
+    <p class="lede" data-s style="--d:440ms">Signature <b>💙</b>. Highest deletion rate in the group — including one wiped <b>mid-Curtis-incident</b>. We have questions.</p>
+    <p class="foot" data-s style="--d:600ms">Blue heart on show.<br>Delete button on standby.</p>
+  </div>
+</section>
+<!-- CARD 13 · JAMES F'S -->
+<section class="slide t-orange">
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">Player card · #13 in the league</div>
+    <h2 class="display" data-s style="--d:100ms">James F's<br><span class="hollow">season</span></h2>
+    <div class="strip" data-s style="--d:280ms"><div><div class="n">111</div><div class="l">messages</div></div><div><div class="n">201s</div><div class="l">median reply</div></div><div><div class="n">6</div><div class="l">polls filed</div></div><div><div class="n">1</div><div class="l">laugh recorded</div></div></div>
+    <p class="lede" data-s style="--d:440ms">Signature — and sole — emoji: <b>😔</b>. Zero swears, zero footy chat, maximum composure.</p>
+    <p class="foot" data-s style="--d:600ms">Emotional range: one emoji.<br>Devastatingly efficient.</p>
+  </div>
+</section>
+<!-- CARD 14 · JOE A'S -->
+<section class="slide ">
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">Player card · #14 in the league</div>
+    <h2 class="display" data-s style="--d:100ms">Joe A's<br><span class="hollow">season</span></h2>
+    <div class="strip" data-s style="--d:280ms"><div><div class="n">97</div><div class="l">messages</div></div><div><div class="n">29</div><div class="l">photos &amp; clips</div></div><div><div class="n">5</div><div class="l">questions asked</div></div><div><div class="n">0</div><div class="l">swears</div></div></div>
+    <p class="lede" data-s style="--d:440ms">Signature <b>☝️</b>. Barely asks, never swears — but <b>“Hell yeah flint and steel!!!!”</b> remains the season's purest moment of joy.</p>
+    <p class="foot" data-s style="--d:600ms">Ninety-seven messages.<br>One Minecraft awakening.</p>
+  </div>
+</section>
+<!-- CARD 15 · THE BENCH -->
+<section class="slide t-gold">
+  <div class="wrap">
+    <div class="eyebrow" data-s style="--d:0ms">Squad rotation · appearances limited</div>
+    <h2 class="display" data-s style="--d:100ms;font-size:clamp(38px,11vw,64px)">The<br>bench</h2>
+    <div class="bench">
+      <div data-s style="--d:240ms"><b>Joe T</b> 20 messages, one 🥲. Quality minutes off the bench.</div>
+      <div data-s style="--d:320ms"><b>James H</b> 13 messages at <b style="font-family:inherit">19.7 words each</b> — the longest sentences in the league. Signed on Boxing Day via contact card.</div>
+      <div data-s style="--d:400ms"><b>Tom M</b> 4 messages. Top emoji: 🧙‍♂️. No further comment.</div>
+      <div data-s style="--d:480ms"><b>Alex</b> 1 message. It was a GIF. Perfect efficiency.</div>
+      <div data-s style="--d:560ms"><b>Chris</b> Posted once all season. Deleted it. Untouchable.</div>
+    </div>
+    <p class="foot" data-s style="--d:700ms">Every squad needs depth.</p>
+  </div>
+</section>
+<!-- FULL TIME -->
+<section class="slide">
+  <svg class="pitch" viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice">
+    <circle cx="200" cy="400" r="90"/><line x1="0" y1="400" x2="400" y2="400"/>
+    <rect x="90" y="-2" width="220" height="110"/><rect x="90" y="692" width="220" height="110"/>
+  </svg>
+  <div class="wrap" style="text-align:center">
+    <div class="eyebrow" data-s style="--d:0ms">Full time</div>
+    <h2 class="display" data-s style="--d:120ms">See youse<br><span class="ac">next season</span></h2>
+    <p class="lede" data-s style="--d:300ms;margin-inline:auto">Compiled from 4,031 messages, 655 attachments,<br>143 polls and one (1) head injury.</p>
+    <button id="restart" data-s style="--d:460ms">↺ Run it back</button>
+  </div>
+</section>
+
+</div>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var prog=document.getElementById('progress');
+  var reduce=window.matchMedia?window.matchMedia('(prefers-reduced-motion: reduce)').matches:false;
+  slides.forEach(function(){ var s=document.createElement('span'); s.appendChild(document.createElement('i')); prog.appendChild(s); });
+  var segs=[].slice.call(prog.children);
+  var cur=-1;
+
+  function countUp(el){
+    var to=parseInt(el.getAttribute('data-to'),10);
+    if(reduce){ el.textContent=to.toLocaleString(); return; }
+    var t0=null, dur=1400;
+    function step(ts){
+      if(!t0)t0=ts;
+      var p=Math.min(1,(ts-t0)/dur);
+      var e=1-Math.pow(1-p,3);
+      el.textContent=Math.round(to*e).toLocaleString();
+      if(p<1 && el._run) requestAnimationFrame(step);
+      else el.textContent=to.toLocaleString();
+    }
+    el._run=true; requestAnimationFrame(step);
+  }
+
+  function darkProgress(slide){
+    var th=slide.className;
+    prog.classList.toggle('dark-p', /t-orange|t-gold/.test(th));
+  }
+
+  function go(n){
+    n=Math.max(0,Math.min(slides.length-1,n));
+    if(n===cur)return;
+    if(cur>=0){
+      slides[cur].classList.remove('active');
+      slides[cur].querySelectorAll('.count').forEach(function(c){c._run=false;});
+    }
+    cur=n;
+    var s=slides[cur];
+    // force restart of CSS reveals
+    s.querySelectorAll('[data-s]').forEach(function(el){ el.style.transition='none'; });
+    void s.offsetWidth;
+    s.querySelectorAll('[data-s]').forEach(function(el){ el.style.transition=''; });
+    s.classList.add('active');
+    s.querySelectorAll('.count').forEach(countUp);
+    segs.forEach(function(sp,i){ sp.classList.toggle('done',i<cur); sp.classList.toggle('cur',i===cur); });
+    darkProgress(s);
+  }
+
+  document.getElementById('fwd').addEventListener('click',function(){go(cur+1);});
+  document.getElementById('back').addEventListener('click',function(){go(cur-1);});
+  document.getElementById('restart').addEventListener('click',function(e){e.stopPropagation();go(0);});
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'||e.key===' ')go(cur+1);
+    if(e.key==='ArrowLeft')go(cur-1);
+  });
+  var tx=null,ty=null;
+  document.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;ty=e.touches[0].clientY;},{passive:true});
+  document.addEventListener('touchend',function(e){
+    if(tx===null)return;
+    var dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty;
+    if(Math.abs(dx)>50 && Math.abs(dx)>Math.abs(dy)) go(cur+(dx<0?1:-1));
+    tx=ty=null;
+  },{passive:true});
+
+  go(0);
+})();
+</script>
+</body>
+</html>
