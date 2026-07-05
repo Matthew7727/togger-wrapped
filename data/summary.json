@@ -1,88 +1,1084 @@
 {
-  "season": {
-    "start": "2025-03-31",
-    "end": "2026-07-04"
+  "meta": {
+    "generated": "2026-07-05",
+    "season": {
+      "start": "2025-03-31",
+      "end": "2026-07-04",
+      "days_active": 321,
+      "days_total": 461
+    },
+    "totals": {
+      "messages": 4079,
+      "words": 28942,
+      "media": 655,
+      "polls": 143,
+      "edited": 25,
+      "deleted": 23,
+      "participants": 19
+    }
   },
   "methodology": {
     "conversation_gap_minutes": 120,
     "question_answer_window_minutes": 30,
-    "night_owl_hours": "00:00-05:59",
-    "notes": "Filtered to user messages only (excludes system posts by group sender)."
+    "night_hours": "00:00-05:59",
+    "notes": "Parsed from _chat.txt. System posts excluded. A conversation start is the first message after a 2h+ silence; last words are messages before a 2h+ silence. Reply time is the median gap before a person replies to someone else. Media types read from attachment filenames (PHOTO/GIF/VIDEO/STICKER/AUDIO)."
   },
-  "new_metrics": {
-    "monthly_momentum": [
+  "players": [
+    {
+      "rank": 1,
+      "name": "James R",
+      "full": "James Reid",
+      "messages": 837,
+      "words": 5849,
+      "wpm": 7.0,
+      "photo": 115,
+      "gif": 3,
+      "video": 16,
+      "sticker": 0,
+      "audio": 2,
+      "doc": 1,
+      "media": 137,
+      "polls": 31,
+      "questions": 128,
+      "questions_answered": 103,
+      "deleted": 4,
+      "edited": 0,
+      "night": 74,
+      "emoji": 59,
+      "top_emoji": "😊",
+      "swears": 6,
+      "conv_starts": 123,
+      "day_starts": 64,
+      "last_words": 136,
+      "longest_message": 443,
+      "median_reply_s": 200
+    },
+    {
+      "rank": 2,
+      "name": "Jack",
+      "full": "Jack Flarty",
+      "messages": 483,
+      "words": 3666,
+      "wpm": 7.6,
+      "photo": 22,
+      "gif": 8,
+      "video": 0,
+      "sticker": 2,
+      "audio": 0,
+      "doc": 0,
+      "media": 32,
+      "polls": 29,
+      "questions": 51,
+      "questions_answered": 40,
+      "deleted": 2,
+      "edited": 0,
+      "night": 50,
+      "emoji": 24,
+      "top_emoji": "🫡",
+      "swears": 6,
+      "conv_starts": 65,
+      "day_starts": 42,
+      "last_words": 79,
+      "longest_message": 242,
+      "median_reply_s": 244
+    },
+    {
+      "rank": 3,
+      "name": "Matt",
+      "full": "Matt Eccleston",
+      "messages": 384,
+      "words": 2304,
+      "wpm": 6.0,
+      "photo": 81,
+      "gif": 2,
+      "video": 13,
+      "sticker": 2,
+      "audio": 0,
+      "doc": 1,
+      "media": 99,
+      "polls": 4,
+      "questions": 49,
+      "questions_answered": 40,
+      "deleted": 0,
+      "edited": 3,
+      "night": 38,
+      "emoji": 29,
+      "top_emoji": "👀",
+      "swears": 4,
+      "conv_starts": 55,
+      "day_starts": 23,
+      "last_words": 40,
+      "longest_message": 380,
+      "median_reply_s": 210
+    },
+    {
+      "rank": 4,
+      "name": "Charlie",
+      "full": "Charlie Corfield",
+      "messages": 330,
+      "words": 3362,
+      "wpm": 10.2,
+      "photo": 26,
+      "gif": 5,
+      "video": 4,
+      "sticker": 2,
+      "audio": 1,
+      "doc": 1,
+      "media": 39,
+      "polls": 11,
+      "questions": 53,
+      "questions_answered": 35,
+      "deleted": 1,
+      "edited": 3,
+      "night": 71,
+      "emoji": 52,
+      "top_emoji": "💙",
+      "swears": 5,
+      "conv_starts": 62,
+      "day_starts": 40,
+      "last_words": 53,
+      "longest_message": 403,
+      "median_reply_s": 166
+    },
+    {
+      "rank": 5,
+      "name": "Curtis",
+      "full": "Curtis",
+      "messages": 304,
+      "words": 1459,
+      "wpm": 4.8,
+      "photo": 36,
+      "gif": 15,
+      "video": 2,
+      "sticker": 0,
+      "audio": 0,
+      "doc": 0,
+      "media": 53,
+      "polls": 3,
+      "questions": 44,
+      "questions_answered": 39,
+      "deleted": 3,
+      "edited": 0,
+      "night": 13,
+      "emoji": 10,
+      "top_emoji": "🦈",
+      "swears": 6,
+      "conv_starts": 43,
+      "day_starts": 16,
+      "last_words": 38,
+      "longest_message": 137,
+      "median_reply_s": 111
+    },
+    {
+      "rank": 6,
+      "name": "Michael",
+      "full": "Michael Baker",
+      "messages": 288,
+      "words": 2022,
+      "wpm": 7.0,
+      "photo": 109,
+      "gif": 13,
+      "video": 1,
+      "sticker": 0,
+      "audio": 0,
+      "doc": 0,
+      "media": 123,
+      "polls": 7,
+      "questions": 45,
+      "questions_answered": 31,
+      "deleted": 1,
+      "edited": 2,
+      "night": 17,
+      "emoji": 17,
+      "top_emoji": "👋",
+      "swears": 0,
+      "conv_starts": 41,
+      "day_starts": 30,
+      "last_words": 26,
+      "longest_message": 311,
+      "median_reply_s": 450
+    },
+    {
+      "rank": 7,
+      "name": "Joseph",
+      "full": "Joseph Kilcullen",
+      "messages": 266,
+      "words": 2561,
+      "wpm": 9.7,
+      "photo": 9,
+      "gif": 2,
+      "video": 0,
+      "sticker": 0,
+      "audio": 0,
+      "doc": 0,
+      "media": 11,
+      "polls": 17,
+      "questions": 36,
+      "questions_answered": 28,
+      "deleted": 1,
+      "edited": 7,
+      "night": 39,
+      "emoji": 23,
+      "top_emoji": "🤣",
+      "swears": 4,
+      "conv_starts": 39,
+      "day_starts": 27,
+      "last_words": 35,
+      "longest_message": 378,
+      "median_reply_s": 121
+    },
+    {
+      "rank": 8,
+      "name": "Lewis",
+      "full": "Lewis Moran",
+      "messages": 240,
+      "words": 1791,
+      "wpm": 7.5,
+      "photo": 28,
+      "gif": 18,
+      "video": 0,
+      "sticker": 0,
+      "audio": 0,
+      "doc": 0,
+      "media": 46,
+      "polls": 12,
+      "questions": 50,
+      "questions_answered": 36,
+      "deleted": 1,
+      "edited": 1,
+      "night": 11,
+      "emoji": 21,
+      "top_emoji": "👀",
+      "swears": 3,
+      "conv_starts": 37,
+      "day_starts": 19,
+      "last_words": 43,
+      "longest_message": 276,
+      "median_reply_s": 144
+    },
+    {
+      "rank": 9,
+      "name": "Tom",
+      "full": "Tom Longworth",
+      "messages": 208,
+      "words": 1136,
+      "wpm": 5.5,
+      "photo": 7,
+      "gif": 0,
+      "video": 0,
+      "sticker": 4,
+      "audio": 0,
+      "doc": 1,
+      "media": 12,
+      "polls": 4,
+      "questions": 35,
+      "questions_answered": 31,
+      "deleted": 0,
+      "edited": 1,
+      "night": 23,
+      "emoji": 4,
+      "top_emoji": "👀",
+      "swears": 1,
+      "conv_starts": 22,
+      "day_starts": 7,
+      "last_words": 28,
+      "longest_message": 190,
+      "median_reply_s": 369
+    },
+    {
+      "rank": 10,
+      "name": "Edward",
+      "full": "Edward Moran (jacks Friend)",
+      "messages": 184,
+      "words": 1006,
+      "wpm": 5.5,
+      "photo": 10,
+      "gif": 1,
+      "video": 2,
+      "sticker": 1,
+      "audio": 0,
+      "doc": 0,
+      "media": 14,
+      "polls": 3,
+      "questions": 7,
+      "questions_answered": 5,
+      "deleted": 0,
+      "edited": 1,
+      "night": 28,
+      "emoji": 12,
+      "top_emoji": "🤣",
+      "swears": 1,
+      "conv_starts": 20,
+      "day_starts": 9,
+      "last_words": 26,
+      "longest_message": 135,
+      "median_reply_s": 66
+    },
+    {
+      "rank": 11,
+      "name": "Aaron",
+      "full": "Aaron Reid",
+      "messages": 161,
+      "words": 1176,
+      "wpm": 7.3,
+      "photo": 20,
+      "gif": 2,
+      "video": 6,
+      "sticker": 0,
+      "audio": 0,
+      "doc": 0,
+      "media": 28,
+      "polls": 6,
+      "questions": 23,
+      "questions_answered": 17,
+      "deleted": 1,
+      "edited": 0,
+      "night": 17,
+      "emoji": 8,
+      "top_emoji": "🤪",
+      "swears": 1,
+      "conv_starts": 25,
+      "day_starts": 15,
+      "last_words": 19,
+      "longest_message": 345,
+      "median_reply_s": 727
+    },
+    {
+      "rank": 12,
+      "name": "Jamie",
+      "full": "Jamie Dahl",
+      "messages": 142,
+      "words": 976,
+      "wpm": 7.1,
+      "photo": 4,
+      "gif": 9,
+      "video": 1,
+      "sticker": 0,
+      "audio": 0,
+      "doc": 0,
+      "media": 14,
+      "polls": 8,
+      "questions": 29,
+      "questions_answered": 20,
+      "deleted": 4,
+      "edited": 2,
+      "night": 23,
+      "emoji": 21,
+      "top_emoji": "😂",
+      "swears": 2,
+      "conv_starts": 20,
+      "day_starts": 16,
+      "last_words": 28,
+      "longest_message": 191,
+      "median_reply_s": 195
+    },
+    {
+      "rank": 13,
+      "name": "James F",
+      "full": "James Fleming",
+      "messages": 111,
+      "words": 717,
+      "wpm": 6.6,
+      "photo": 6,
+      "gif": 2,
+      "video": 1,
+      "sticker": 0,
+      "audio": 0,
+      "doc": 0,
+      "media": 9,
+      "polls": 6,
+      "questions": 28,
+      "questions_answered": 17,
+      "deleted": 3,
+      "edited": 2,
+      "night": 10,
+      "emoji": 1,
+      "top_emoji": "😔",
+      "swears": 0,
+      "conv_starts": 16,
+      "day_starts": 7,
+      "last_words": 23,
+      "longest_message": 149,
+      "median_reply_s": 315
+    },
+    {
+      "rank": 14,
+      "name": "Joe A",
+      "full": "Joe Allen",
+      "messages": 98,
+      "words": 534,
+      "wpm": 5.5,
+      "photo": 26,
+      "gif": 2,
+      "video": 1,
+      "sticker": 0,
+      "audio": 0,
+      "doc": 0,
+      "media": 29,
+      "polls": 2,
+      "questions": 5,
+      "questions_answered": 4,
+      "deleted": 1,
+      "edited": 2,
+      "night": 4,
+      "emoji": 3,
+      "top_emoji": "☝",
+      "swears": 0,
+      "conv_starts": 13,
+      "day_starts": 3,
+      "last_words": 7,
+      "longest_message": 149,
+      "median_reply_s": 281
+    },
+    {
+      "rank": 15,
+      "name": "Joe T",
+      "full": "Joe Tom Friend",
+      "messages": 22,
+      "words": 108,
+      "wpm": 4.9,
+      "photo": 5,
+      "gif": 0,
+      "video": 1,
+      "sticker": 0,
+      "audio": 0,
+      "doc": 0,
+      "media": 6,
+      "polls": 0,
+      "questions": 0,
+      "questions_answered": 0,
+      "deleted": 0,
+      "edited": 1,
+      "night": 0,
+      "emoji": 1,
+      "top_emoji": "🥲",
+      "swears": 0,
+      "conv_starts": 0,
+      "day_starts": 0,
+      "last_words": 1,
+      "longest_message": 102,
+      "median_reply_s": 57
+    },
+    {
+      "rank": 16,
+      "name": "James H",
+      "full": "James Hynes",
+      "messages": 14,
+      "words": 261,
+      "wpm": 18.6,
+      "photo": 0,
+      "gif": 0,
+      "video": 0,
+      "sticker": 0,
+      "audio": 0,
+      "doc": 0,
+      "media": 0,
+      "polls": 0,
+      "questions": 4,
+      "questions_answered": 2,
+      "deleted": 0,
+      "edited": 0,
+      "night": 7,
+      "emoji": 3,
+      "top_emoji": "💜",
+      "swears": 0,
+      "conv_starts": 3,
+      "day_starts": 2,
+      "last_words": 2,
+      "longest_message": 235,
+      "median_reply_s": 2110
+    },
+    {
+      "rank": 17,
+      "name": "Tom M",
+      "full": "Tom Moss (Jacks Friend)",
+      "messages": 4,
+      "words": 8,
+      "wpm": 2.0,
+      "photo": 2,
+      "gif": 0,
+      "video": 0,
+      "sticker": 0,
+      "audio": 0,
+      "doc": 0,
+      "media": 2,
+      "polls": 0,
+      "questions": 0,
+      "questions_answered": 0,
+      "deleted": 0,
+      "edited": 0,
+      "night": 2,
+      "emoji": 2,
+      "top_emoji": "🧙",
+      "swears": 0,
+      "conv_starts": 1,
+      "day_starts": 1,
+      "last_words": 0,
+      "longest_message": 28,
+      "median_reply_s": 3539
+    },
+    {
+      "rank": 18,
+      "name": "Alex",
+      "full": "~ Alex",
+      "messages": 2,
+      "words": 6,
+      "wpm": 3.0,
+      "photo": 0,
+      "gif": 1,
+      "video": 0,
+      "sticker": 0,
+      "audio": 0,
+      "doc": 0,
+      "media": 1,
+      "polls": 0,
+      "questions": 0,
+      "questions_answered": 0,
+      "deleted": 0,
+      "edited": 0,
+      "night": 0,
+      "emoji": 0,
+      "top_emoji": "",
+      "swears": 0,
+      "conv_starts": 0,
+      "day_starts": 0,
+      "last_words": 0,
+      "longest_message": 30,
+      "median_reply_s": 606
+    },
+    {
+      "rank": 19,
+      "name": "Chris",
+      "full": "~ Chris Kennedy",
+      "messages": 1,
+      "words": 0,
+      "wpm": 0.0,
+      "photo": 0,
+      "gif": 0,
+      "video": 0,
+      "sticker": 0,
+      "audio": 0,
+      "doc": 0,
+      "media": 0,
+      "polls": 0,
+      "questions": 0,
+      "questions_answered": 0,
+      "deleted": 1,
+      "edited": 0,
+      "night": 0,
+      "emoji": 0,
+      "top_emoji": "",
+      "swears": 0,
+      "conv_starts": 0,
+      "day_starts": 0,
+      "last_words": 1,
+      "longest_message": 0,
+      "median_reply_s": 509
+    }
+  ],
+  "leaderboards": {
+    "messages": [
       {
-        "month": "2025-12",
-        "messages": 597
-      },
-      {
-        "month": "2026-04",
-        "messages": 391
-      },
-      {
-        "month": "2025-11",
-        "messages": 389
-      },
-      {
-        "month": "2026-01",
-        "messages": 353
-      },
-      {
-        "month": "2026-02",
-        "messages": 323
-      },
-      {
-        "month": "2026-06",
-        "messages": 253
-      }
-    ],
-    "conversation_starts": [
-      {
-        "name": "James",
-        "count": 123
+        "name": "James R",
+        "value": 837,
+        "label": "messages"
       },
       {
         "name": "Jack",
-        "count": 65
-      },
-      {
-        "name": "Charlie",
-        "count": 62
+        "value": 483,
+        "label": "messages"
       },
       {
         "name": "Matt",
-        "count": 55
+        "value": 384,
+        "label": "messages"
+      },
+      {
+        "name": "Charlie",
+        "value": 330,
+        "label": "messages"
       },
       {
         "name": "Curtis",
-        "count": 43
+        "value": 304,
+        "label": "messages"
+      },
+      {
+        "name": "Michael",
+        "value": 288,
+        "label": "messages"
+      },
+      {
+        "name": "Joseph",
+        "value": 266,
+        "label": "messages"
+      },
+      {
+        "name": "Lewis",
+        "value": 240,
+        "label": "messages"
       }
     ],
-    "top_handoffs": [
+    "words": [
       {
-        "from": "James",
-        "to": "Jack",
-        "count": 120
+        "name": "James R",
+        "value": 5849,
+        "label": "words"
       },
       {
-        "from": "Jack",
-        "to": "James",
-        "count": 96
+        "name": "Jack",
+        "value": 3666,
+        "label": "words"
       },
       {
-        "from": "Curtis",
-        "to": "James",
-        "count": 85
+        "name": "Charlie",
+        "value": 3362,
+        "label": "words"
       },
       {
-        "from": "Charlie",
-        "to": "James",
-        "count": 76
+        "name": "Joseph",
+        "value": 2561,
+        "label": "words"
       },
       {
-        "from": "James",
-        "to": "Curtis",
-        "count": 71
+        "name": "Matt",
+        "value": 2304,
+        "label": "words"
+      },
+      {
+        "name": "Michael",
+        "value": 2022,
+        "label": "words"
+      },
+      {
+        "name": "Lewis",
+        "value": 1791,
+        "label": "words"
+      },
+      {
+        "name": "Curtis",
+        "value": 1459,
+        "label": "words"
+      }
+    ],
+    "media": [
+      {
+        "name": "James R",
+        "value": 137,
+        "label": "media"
+      },
+      {
+        "name": "Michael",
+        "value": 123,
+        "label": "media"
+      },
+      {
+        "name": "Matt",
+        "value": 99,
+        "label": "media"
+      },
+      {
+        "name": "Curtis",
+        "value": 53,
+        "label": "media"
+      },
+      {
+        "name": "Lewis",
+        "value": 46,
+        "label": "media"
+      },
+      {
+        "name": "Charlie",
+        "value": 39,
+        "label": "media"
+      },
+      {
+        "name": "Jack",
+        "value": 32,
+        "label": "media"
+      },
+      {
+        "name": "Joe A",
+        "value": 29,
+        "label": "media"
+      }
+    ],
+    "polls": [
+      {
+        "name": "James R",
+        "value": 31,
+        "label": "polls"
+      },
+      {
+        "name": "Jack",
+        "value": 29,
+        "label": "polls"
+      },
+      {
+        "name": "Joseph",
+        "value": 17,
+        "label": "polls"
+      },
+      {
+        "name": "Lewis",
+        "value": 12,
+        "label": "polls"
+      },
+      {
+        "name": "Charlie",
+        "value": 11,
+        "label": "polls"
+      },
+      {
+        "name": "Jamie",
+        "value": 8,
+        "label": "polls"
+      },
+      {
+        "name": "Michael",
+        "value": 7,
+        "label": "polls"
+      },
+      {
+        "name": "Aaron",
+        "value": 6,
+        "label": "polls"
+      }
+    ],
+    "gifs": [
+      {
+        "name": "Lewis",
+        "value": 18,
+        "label": "GIFs"
+      },
+      {
+        "name": "Curtis",
+        "value": 15,
+        "label": "GIFs"
+      },
+      {
+        "name": "Michael",
+        "value": 13,
+        "label": "GIFs"
+      },
+      {
+        "name": "Jamie",
+        "value": 9,
+        "label": "GIFs"
+      },
+      {
+        "name": "Jack",
+        "value": 8,
+        "label": "GIFs"
+      },
+      {
+        "name": "Charlie",
+        "value": 5,
+        "label": "GIFs"
+      },
+      {
+        "name": "James R",
+        "value": 3,
+        "label": "GIFs"
+      },
+      {
+        "name": "Matt",
+        "value": 2,
+        "label": "GIFs"
+      }
+    ],
+    "emoji": [
+      {
+        "name": "James R",
+        "value": 59,
+        "label": "emoji"
+      },
+      {
+        "name": "Charlie",
+        "value": 52,
+        "label": "emoji"
+      },
+      {
+        "name": "Matt",
+        "value": 29,
+        "label": "emoji"
+      },
+      {
+        "name": "Jack",
+        "value": 24,
+        "label": "emoji"
+      },
+      {
+        "name": "Joseph",
+        "value": 23,
+        "label": "emoji"
+      },
+      {
+        "name": "Lewis",
+        "value": 21,
+        "label": "emoji"
+      },
+      {
+        "name": "Jamie",
+        "value": 21,
+        "label": "emoji"
+      },
+      {
+        "name": "Michael",
+        "value": 17,
+        "label": "emoji"
+      }
+    ],
+    "swears": [
+      {
+        "name": "James R",
+        "value": 6,
+        "label": "swears"
+      },
+      {
+        "name": "Jack",
+        "value": 6,
+        "label": "swears"
+      },
+      {
+        "name": "Curtis",
+        "value": 6,
+        "label": "swears"
+      },
+      {
+        "name": "Charlie",
+        "value": 5,
+        "label": "swears"
+      },
+      {
+        "name": "Matt",
+        "value": 4,
+        "label": "swears"
+      },
+      {
+        "name": "Joseph",
+        "value": 4,
+        "label": "swears"
+      },
+      {
+        "name": "Lewis",
+        "value": 3,
+        "label": "swears"
+      },
+      {
+        "name": "Jamie",
+        "value": 2,
+        "label": "swears"
+      }
+    ],
+    "night_owls": [
+      {
+        "name": "James R",
+        "value": 74,
+        "label": "night msgs"
+      },
+      {
+        "name": "Charlie",
+        "value": 71,
+        "label": "night msgs"
+      },
+      {
+        "name": "Jack",
+        "value": 50,
+        "label": "night msgs"
+      },
+      {
+        "name": "Joseph",
+        "value": 39,
+        "label": "night msgs"
+      },
+      {
+        "name": "Matt",
+        "value": 38,
+        "label": "night msgs"
+      },
+      {
+        "name": "Edward",
+        "value": 28,
+        "label": "night msgs"
+      },
+      {
+        "name": "Tom",
+        "value": 23,
+        "label": "night msgs"
+      },
+      {
+        "name": "Jamie",
+        "value": 23,
+        "label": "night msgs"
+      }
+    ],
+    "day_starters": [
+      {
+        "name": "James R",
+        "value": 64,
+        "label": "days opened"
+      },
+      {
+        "name": "Jack",
+        "value": 42,
+        "label": "days opened"
+      },
+      {
+        "name": "Charlie",
+        "value": 40,
+        "label": "days opened"
+      },
+      {
+        "name": "Michael",
+        "value": 30,
+        "label": "days opened"
+      },
+      {
+        "name": "Joseph",
+        "value": 27,
+        "label": "days opened"
+      },
+      {
+        "name": "Matt",
+        "value": 23,
+        "label": "days opened"
+      },
+      {
+        "name": "Lewis",
+        "value": 19,
+        "label": "days opened"
+      },
+      {
+        "name": "Curtis",
+        "value": 16,
+        "label": "days opened"
+      }
+    ],
+    "conv_starts": [
+      {
+        "name": "James R",
+        "value": 123,
+        "label": "convos started"
+      },
+      {
+        "name": "Jack",
+        "value": 65,
+        "label": "convos started"
+      },
+      {
+        "name": "Charlie",
+        "value": 62,
+        "label": "convos started"
+      },
+      {
+        "name": "Matt",
+        "value": 55,
+        "label": "convos started"
+      },
+      {
+        "name": "Curtis",
+        "value": 43,
+        "label": "convos started"
+      },
+      {
+        "name": "Michael",
+        "value": 41,
+        "label": "convos started"
+      },
+      {
+        "name": "Joseph",
+        "value": 39,
+        "label": "convos started"
+      },
+      {
+        "name": "Lewis",
+        "value": 37,
+        "label": "convos started"
+      }
+    ],
+    "wpm": [
+      {
+        "name": "Charlie",
+        "value": 10.2,
+        "label": "words/msg"
+      },
+      {
+        "name": "Joseph",
+        "value": 9.7,
+        "label": "words/msg"
+      },
+      {
+        "name": "Jack",
+        "value": 7.6,
+        "label": "words/msg"
+      },
+      {
+        "name": "Lewis",
+        "value": 7.5,
+        "label": "words/msg"
+      },
+      {
+        "name": "Aaron",
+        "value": 7.3,
+        "label": "words/msg"
+      },
+      {
+        "name": "Jamie",
+        "value": 7.1,
+        "label": "words/msg"
+      },
+      {
+        "name": "James R",
+        "value": 7.0,
+        "label": "words/msg"
+      },
+      {
+        "name": "Michael",
+        "value": 7.0,
+        "label": "words/msg"
+      }
+    ],
+    "fastest_reply": [
+      {
+        "name": "Edward",
+        "value": 66,
+        "label": "sec median"
+      },
+      {
+        "name": "Curtis",
+        "value": 111,
+        "label": "sec median"
+      },
+      {
+        "name": "Joseph",
+        "value": 121,
+        "label": "sec median"
+      },
+      {
+        "name": "Lewis",
+        "value": 144,
+        "label": "sec median"
+      },
+      {
+        "name": "Charlie",
+        "value": 166,
+        "label": "sec median"
+      },
+      {
+        "name": "Jamie",
+        "value": 195,
+        "label": "sec median"
+      },
+      {
+        "name": "James R",
+        "value": 200,
+        "label": "sec median"
+      },
+      {
+        "name": "Matt",
+        "value": 210,
+        "label": "sec median"
       }
     ],
     "question_conversion": [
@@ -105,61 +1101,438 @@
         "rate": 82
       },
       {
-        "name": "James",
+        "name": "James R",
         "answered": 103,
         "total": 128,
         "rate": 80
       },
       {
-        "name": "Joe",
-        "answered": 4,
-        "total": 5,
-        "rate": 80
-      }
-    ],
-    "night_owls": [
-      {
-        "name": "James",
-        "count": 74
-      },
-      {
-        "name": "Charlie",
-        "count": 71
-      },
-      {
         "name": "Jack",
-        "count": 50
+        "answered": 40,
+        "total": 51,
+        "rate": 78
       },
       {
         "name": "Joseph",
-        "count": 40
+        "answered": 28,
+        "total": 36,
+        "rate": 78
       },
       {
-        "name": "Matt",
-        "count": 38
-      }
-    ],
-    "day_starters": [
-      {
-        "name": "James",
-        "count": 64
+        "name": "Aaron",
+        "answered": 17,
+        "total": 23,
+        "rate": 74
       },
       {
-        "name": "Jack",
-        "count": 42
-      },
-      {
-        "name": "Charlie",
-        "count": 40
-      },
-      {
-        "name": "Michael",
-        "count": 30
-      },
-      {
-        "name": "Joseph",
-        "count": 27
+        "name": "Lewis",
+        "answered": 36,
+        "total": 50,
+        "rate": 72
       }
     ]
-  }
+  },
+  "monthly": [
+    {
+      "month": "2025-03",
+      "messages": 3
+    },
+    {
+      "month": "2025-04",
+      "messages": 157
+    },
+    {
+      "month": "2025-05",
+      "messages": 207
+    },
+    {
+      "month": "2025-06",
+      "messages": 214
+    },
+    {
+      "month": "2025-07",
+      "messages": 226
+    },
+    {
+      "month": "2025-08",
+      "messages": 176
+    },
+    {
+      "month": "2025-09",
+      "messages": 107
+    },
+    {
+      "month": "2025-10",
+      "messages": 195
+    },
+    {
+      "month": "2025-11",
+      "messages": 389
+    },
+    {
+      "month": "2025-12",
+      "messages": 597
+    },
+    {
+      "month": "2026-01",
+      "messages": 353
+    },
+    {
+      "month": "2026-02",
+      "messages": 323
+    },
+    {
+      "month": "2026-03",
+      "messages": 234
+    },
+    {
+      "month": "2026-04",
+      "messages": 391
+    },
+    {
+      "month": "2026-05",
+      "messages": 217
+    },
+    {
+      "month": "2026-06",
+      "messages": 253
+    },
+    {
+      "month": "2026-07",
+      "messages": 37
+    }
+  ],
+  "heatmap": {
+    "weekdays": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+    ],
+    "grid": [
+      [
+        0,
+        1,
+        0,
+        5,
+        8,
+        9,
+        13,
+        26,
+        23,
+        4,
+        14,
+        16,
+        12,
+        14,
+        33,
+        32,
+        36,
+        10,
+        8,
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        3,
+        5,
+        1,
+        15,
+        4,
+        9,
+        25,
+        16,
+        6,
+        4,
+        21,
+        18,
+        23,
+        14,
+        26,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        2,
+        3,
+        6,
+        18,
+        4,
+        21,
+        22,
+        16,
+        30,
+        11,
+        73,
+        8,
+        14,
+        16,
+        63,
+        15,
+        2,
+        15,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        2,
+        2,
+        12,
+        24,
+        19,
+        12,
+        24,
+        14,
+        27,
+        16,
+        41,
+        43,
+        99,
+        76,
+        123,
+        85,
+        54,
+        6,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        2,
+        24,
+        38,
+        29,
+        63,
+        28,
+        57,
+        68,
+        53,
+        58,
+        69,
+        88,
+        72,
+        54,
+        34,
+        25,
+        25,
+        5,
+        2,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        29,
+        48,
+        22,
+        65,
+        130,
+        96,
+        78,
+        52,
+        111,
+        109,
+        77,
+        152,
+        167,
+        77,
+        29,
+        45,
+        17,
+        5,
+        2,
+        0,
+        2
+      ],
+      [
+        0,
+        1,
+        7,
+        38,
+        33,
+        23,
+        31,
+        40,
+        111,
+        53,
+        33,
+        30,
+        24,
+        24,
+        14,
+        5,
+        14,
+        6,
+        8,
+        1,
+        0,
+        0,
+        0,
+        1
+      ]
+    ],
+    "max": 167
+  },
+  "handoffs": [
+    {
+      "from": "James R",
+      "to": "Jack",
+      "count": 120
+    },
+    {
+      "from": "Jack",
+      "to": "James R",
+      "count": 96
+    },
+    {
+      "from": "Curtis",
+      "to": "James R",
+      "count": 85
+    },
+    {
+      "from": "Charlie",
+      "to": "James R",
+      "count": 76
+    },
+    {
+      "from": "James R",
+      "to": "Curtis",
+      "count": 71
+    },
+    {
+      "from": "James R",
+      "to": "Charlie",
+      "count": 70
+    },
+    {
+      "from": "Tom",
+      "to": "James R",
+      "count": 57
+    },
+    {
+      "from": "Matt",
+      "to": "James R",
+      "count": 54
+    },
+    {
+      "from": "James R",
+      "to": "Matt",
+      "count": 52
+    },
+    {
+      "from": "James R",
+      "to": "Tom",
+      "count": 48
+    },
+    {
+      "from": "Lewis",
+      "to": "James R",
+      "count": 44
+    },
+    {
+      "from": "James R",
+      "to": "Edward",
+      "count": 42
+    }
+  ],
+  "records": {
+    "longest_message": {
+      "name": "James R",
+      "chars": 443,
+      "preview": "https://www.ticketmaster.co.uk/cote-d-ivoire-v-scotland-liverpool-31-03-2026/event/35006434A6862759?utm_medium=paid&utm_source=ig&utm_id=120"
+    },
+    "longest_silence": {
+      "days": 9.9,
+      "from": "04 Aug 2025",
+      "to": "14 Aug 2025",
+      "breaker": "James R"
+    },
+    "longest_streak_days": 13,
+    "biggest_day": {
+      "date": "11 Apr 2026",
+      "count": 153
+    },
+    "biggest_photo_run": {
+      "name": "Michael",
+      "count": 63,
+      "date": "02 Nov 2025"
+    }
+  },
+  "dictionary": [
+    {
+      "word": "youse",
+      "count": 102,
+      "owner": "James R"
+    },
+    {
+      "word": "yous",
+      "count": 12,
+      "owner": "Joseph"
+    },
+    {
+      "word": "goanna",
+      "count": 8,
+      "owner": "James R"
+    },
+    {
+      "word": "gucci",
+      "count": 6,
+      "owner": "Tom"
+    },
+    {
+      "word": "lads",
+      "count": 25,
+      "owner": "Charlie"
+    },
+    {
+      "word": "footy",
+      "count": 79,
+      "owner": "Joseph"
+    },
+    {
+      "word": "grub",
+      "count": 7,
+      "owner": "James R"
+    },
+    {
+      "word": "mert",
+      "count": 1,
+      "owner": "Michael"
+    },
+    {
+      "word": "cheeky",
+      "count": 2,
+      "owner": "Curtis"
+    },
+    {
+      "word": "sound",
+      "count": 64,
+      "owner": "James R"
+    }
+  ]
 }

@@ -159,8 +159,12 @@ body{
 .dark-p span{background:rgba(0,0,0,.22)} .dark-p span i{background:#111}
 .zone{position:fixed;top:0;bottom:0;width:34%;z-index:40;cursor:pointer}
 #back{left:0}#fwd{right:0;width:66%}
-#restart{font:inherit;margin-top:30px;background:var(--fg);color:var(--bg);border:0;border-radius:999px;
+#restart{font:inherit;margin:18px auto 0;display:block;background:var(--fg);color:var(--bg);border:0;border-radius:999px;
   padding:14px 26px;font-weight:700;font-size:15px;cursor:pointer;position:relative;z-index:60}
+.almanac-cta{display:block;width:max-content;max-width:100%;margin:30px auto 0;text-decoration:none;background:var(--orange);color:#0A1512;
+  border-radius:999px;padding:15px 30px;font-weight:800;font-size:16px;letter-spacing:.01em;text-align:center;
+  position:relative;z-index:60;box-shadow:0 8px 30px rgba(255,92,31,.35);transition:transform .15s ease}
+.almanac-cta:active{transform:scale(.97)}
 
 @media (max-width:420px){
   .slide{padding:max(56px,env(safe-area-inset-top)) 18px max(34px,env(safe-area-inset-bottom))}
@@ -419,67 +423,6 @@ body{
   </div>
 </section>
 
-<!-- 16 · MONTHLY MOMENTUM -->
-<section class="slide t-blue">
-  <div class="wrap">
-    <div class="eyebrow" data-s style="--d:0ms">Form guide · month by month</div>
-    <h2 class="display" data-s style="--d:100ms">Monthly<br><span class="ac">momentum</span></h2>
-    <div class="metric-list" id="monthly-list" data-s style="--d:260ms">
-      <div class="metric"><span class="lab">Loading months</span><span class="val">…</span><span class="track"><i style="--w:100%;--d:270ms"></i></span></div>
-    </div>
-    <p class="foot" data-s style="--d:620ms">December was the group's Christmas No. 1.<br>Somehow beat every actual football month.</p>
-  </div>
-</section>
-
-<!-- 17 · HANDOFF NETWORK -->
-<section class="slide t-orange">
-  <div class="wrap">
-    <div class="eyebrow" data-s style="--d:0ms">Tactical analysis · the passing game</div>
-    <h2 class="display" data-s style="--d:100ms">Handoff<br><span class="hollow">network</span></h2>
-    <div class="metric-list" id="handoff-list" data-s style="--d:260ms">
-      <div class="metric"><span class="lab">Loading pairings</span><span class="val">…</span><span class="track"><i style="--w:100%;--d:270ms"></i></span></div>
-    </div>
-    <p class="foot" data-s style="--d:620ms">Two players, doing all the talking.<br>Everyone else is basically watching a rally.</p>
-  </div>
-</section>
-
-<!-- 18 · QUESTION CONVERSION -->
-<section class="slide t-ink">
-  <div class="wrap">
-    <div class="eyebrow" data-s style="--d:0ms">VAR review · who actually answers</div>
-    <h2 class="display" data-s style="--d:100ms">Question<br><span class="ac">conversion</span></h2>
-    <div class="metric-list" id="question-list" data-s style="--d:260ms">
-      <div class="metric"><span class="lab">Loading conversion</span><span class="val">…</span><span class="track"><i style="--w:100%;--d:270ms"></i></span></div>
-    </div>
-    <p class="foot" data-s style="--d:620ms">Ask these lads something, get an answer in 30 minutes.<br>Ask the group chat anything else, wait until Tuesday.</p>
-  </div>
-</section>
-
-<!-- 19 · NIGHT OWLS -->
-<section class="slide t-gold">
-  <div class="wrap">
-    <div class="eyebrow" data-s style="--d:0ms">Late kick-offs · 00:00–05:59</div>
-    <h2 class="display" data-s style="--d:100ms">Night<br><span class="hollow">owls</span></h2>
-    <div class="rows" id="owl-list">
-      <div class="row" data-s style="--d:220ms"><span class="nm">Loading</span><span class="bar"><i style="--w:100%;--d:270ms"></i></span><span class="num">...</span></div>
-    </div>
-    <p class="foot" data-s style="--d:620ms">Sending texts at 3am with work in five hours.<br>Peak form, questionable judgement.</p>
-  </div>
-</section>
-
-<!-- 20 · DAY STARTERS -->
-<section class="slide t-blue">
-  <div class="wrap">
-    <div class="eyebrow" data-s style="--d:0ms">Kick-off · who opens the day's play</div>
-    <h2 class="display" data-s style="--d:100ms">Day<br><span class="ac">starters</span></h2>
-    <div class="rows" id="starter-list">
-      <div class="row" data-s style="--d:220ms"><span class="nm">Loading</span><span class="bar"><i style="--w:100%;--d:270ms"></i></span><span class="num">...</span></div>
-    </div>
-    <p class="foot" id="methodology-note" data-s style="--d:620ms">Someone has to break the overnight silence.<br>It's usually the same someone.</p>
-  </div>
-</section>
-
-
 <!-- CARD 1 · JAMES R'S -->
 <section class="slide t-ink">
   <div class="wrap">
@@ -560,79 +503,13 @@ body{
     <p class="foot" data-s style="--d:600ms">Why type a feeling<br>when a GIF already exists?</p>
   </div>
 </section>
-<!-- CARD 9 · TOM'S -->
-<section class="slide ">
-  <div class="wrap">
-    <div class="eyebrow" data-s style="--d:0ms">Player card · #9 in the league</div>
-    <h2 class="display" data-s style="--d:100ms">Tom's<br><span class="hollow">season</span></h2>
-    <div class="strip" data-s style="--d:280ms"><div><div class="n">207</div><div class="l">messages</div></div><div><div class="n">260s</div><div class="l">median reply</div></div><div><div class="n">5.4</div><div class="l">words / msg</div></div><div><div class="n">4</div><div class="l">stickers · top</div></div></div>
-    <p class="lede" data-s style="--d:440ms">Signature <b>👀🧐</b>. Sticker connoisseur. Says <b>“gucci”</b>, means everything is fine.</p>
-    <p class="foot" data-s style="--d:600ms">Reads it. Considers it. Replies<br>four minutes later: “gucci”.</p>
-  </div>
-</section>
-<!-- CARD 10 · EDWARD'S -->
+<!-- SQUAD DEPTH · ALMANAC TEASER -->
 <section class="slide t-gold">
   <div class="wrap">
-    <div class="eyebrow" data-s style="--d:0ms">Player card · #10 in the league</div>
-    <h2 class="display" data-s style="--d:100ms">Edward's<br><span class="hollow">season</span></h2>
-    <div class="strip" data-s style="--d:280ms"><div><div class="n">182</div><div class="l">messages</div></div><div><div class="n">50s</div><div class="l">reply · fastest</div></div><div><div class="n">7</div><div class="l">questions asked</div></div><div><div class="n">16</div><div class="l">convos started</div></div></div>
-    <p class="lede" data-s style="--d:440ms">Signature <b>🤣</b>. Fastest fingers in the league — and just <b>7 questions in 182 messages</b>.</p>
-    <p class="foot" data-s style="--d:600ms">Answers everything.<br>Questions nothing.</p>
-  </div>
-</section>
-<!-- CARD 11 · AARON'S -->
-<section class="slide t-ink">
-  <div class="wrap">
-    <div class="eyebrow" data-s style="--d:0ms">Player card · #11 in the league</div>
-    <h2 class="display" data-s style="--d:100ms">Aaron's<br><span class="hollow">season</span></h2>
-    <div class="strip" data-s style="--d:280ms"><div><div class="n">158</div><div class="l">messages</div></div><div><div class="n">264s</div><div class="l">median reply</div></div><div><div class="n">6</div><div class="l">videos</div></div><div><div class="n">19</div><div class="l">convos started</div></div></div>
-    <p class="lede" data-s style="--d:440ms">Signature <b>🤪</b>. Slowest median reply in the league — and, on National day, a delayed train to match.</p>
-    <p class="foot" data-s style="--d:600ms">Worth the wait.<br>Usually.</p>
-  </div>
-</section>
-<!-- CARD 12 · JAMIE'S -->
-<section class="slide t-blue">
-  <div class="wrap">
-    <div class="eyebrow" data-s style="--d:0ms">Player card · #12 in the league</div>
-    <h2 class="display" data-s style="--d:100ms">Jamie's<br><span class="hollow">season</span></h2>
-    <div class="strip" data-s style="--d:280ms"><div><div class="n">142</div><div class="l">messages</div></div><div><div class="n">104s</div><div class="l">median reply</div></div><div><div class="n">10</div><div class="l">GIFs</div></div><div><div class="n">4</div><div class="l">deleted · top</div></div></div>
-    <p class="lede" data-s style="--d:440ms">Signature <b>💙</b>. Highest deletion rate in the group — including one wiped <b>mid-Curtis-incident</b>. We have questions.</p>
-    <p class="foot" data-s style="--d:600ms">Blue heart on show.<br>Delete button on standby.</p>
-  </div>
-</section>
-<!-- CARD 13 · JAMES F'S -->
-<section class="slide t-orange">
-  <div class="wrap">
-    <div class="eyebrow" data-s style="--d:0ms">Player card · #13 in the league</div>
-    <h2 class="display" data-s style="--d:100ms">James F's<br><span class="hollow">season</span></h2>
-    <div class="strip" data-s style="--d:280ms"><div><div class="n">111</div><div class="l">messages</div></div><div><div class="n">201s</div><div class="l">median reply</div></div><div><div class="n">6</div><div class="l">polls filed</div></div><div><div class="n">1</div><div class="l">laugh recorded</div></div></div>
-    <p class="lede" data-s style="--d:440ms">Signature — and sole — emoji: <b>😔</b>. Zero swears, zero footy chat, maximum composure.</p>
-    <p class="foot" data-s style="--d:600ms">Emotional range: one emoji.<br>Devastatingly efficient.</p>
-  </div>
-</section>
-<!-- CARD 14 · JOE A'S -->
-<section class="slide ">
-  <div class="wrap">
-    <div class="eyebrow" data-s style="--d:0ms">Player card · #14 in the league</div>
-    <h2 class="display" data-s style="--d:100ms">Joe A's<br><span class="hollow">season</span></h2>
-    <div class="strip" data-s style="--d:280ms"><div><div class="n">97</div><div class="l">messages</div></div><div><div class="n">29</div><div class="l">photos &amp; clips</div></div><div><div class="n">5</div><div class="l">questions asked</div></div><div><div class="n">0</div><div class="l">swears</div></div></div>
-    <p class="lede" data-s style="--d:440ms">Signature <b>☝️</b>. Barely asks, never swears — but <b>“Hell yeah flint and steel!!!!”</b> remains the season's purest moment of joy.</p>
-    <p class="foot" data-s style="--d:600ms">Ninety-seven messages.<br>One Minecraft awakening.</p>
-  </div>
-</section>
-<!-- CARD 15 · THE BENCH -->
-<section class="slide t-gold">
-  <div class="wrap">
-    <div class="eyebrow" data-s style="--d:0ms">Squad rotation · appearances limited</div>
-    <h2 class="display" data-s style="--d:100ms;font-size:clamp(38px,11vw,64px)">The<br>bench</h2>
-    <div class="bench">
-      <div data-s style="--d:240ms"><b>Joe T</b> 20 messages, one 🥲. Quality minutes off the bench.</div>
-      <div data-s style="--d:320ms"><b>James H</b> 13 messages at <b style="font-family:inherit">19.7 words each</b> — the longest sentences in the league. Signed on Boxing Day via contact card.</div>
-      <div data-s style="--d:400ms"><b>Tom M</b> 4 messages. Top emoji: 🧙‍♂️. No further comment.</div>
-      <div data-s style="--d:480ms"><b>Alex</b> 1 message. It was a GIF. Perfect efficiency.</div>
-      <div data-s style="--d:560ms"><b>Chris</b> Posted once all season. Deleted it. Untouchable.</div>
-    </div>
-    <p class="foot" data-s style="--d:700ms">Every squad needs depth.</p>
+    <div class="eyebrow" data-s style="--d:0ms">Squad rotation · that's your top eight</div>
+    <h2 class="display" data-s style="--d:100ms">The rest of<br><span class="hollow">the squad</span></h2>
+    <p class="lede" data-s style="--d:300ms">Tom, Edward, Aaron, Jamie, James F, Joe A and the whole bench are still going — <b>eleven more dossiers</b>, the full league table, heatmaps and records.</p>
+    <p class="foot" data-s style="--d:600ms">Too much greatness for one flick-through.<br>We filed it in the Almanac.</p>
   </div>
 </section>
 <!-- FULL TIME -->
@@ -645,7 +522,8 @@ body{
     <div class="eyebrow" data-s style="--d:0ms">Full time</div>
     <h2 class="display" data-s style="--d:120ms">See youse<br><span class="ac">next season</span></h2>
     <p class="lede" data-s style="--d:300ms;margin-inline:auto">Compiled from 4,031 messages, 655 attachments,<br>143 polls and one (1) head injury.</p>
-    <button id="restart" data-s style="--d:460ms">↺ Run it back</button>
+    <a class="almanac-cta" href="almanac.html" data-s style="--d:400ms">▸ Open the full Almanac</a>
+    <button id="restart" data-s style="--d:520ms">↺ Run it back</button>
   </div>
 </section>
 
@@ -653,87 +531,6 @@ body{
 
 <script>
 (function(){
-  function monthLabel(ym){
-    var bits=ym.split('-');
-    var d=new Date(Number(bits[0]), Number(bits[1])-1, 1);
-    return d.toLocaleString('en-GB',{month:'short',year:'numeric'});
-  }
-
-  function esc(v){
-    var map={'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'};
-    return String(v).replace(/[&<>\"']/g, function(ch){
-      return map[ch];
-    });
-  }
-
-  function renderMetricList(containerId, rows, opts){
-    var el=document.getElementById(containerId);
-    if(!el)return;
-    if(!rows || !rows.length){
-      el.innerHTML='<div class="metric"><span class="lab">Data unavailable</span><span class="val">n/a</span><span class="track"><i style="--w:100%"></i></span></div>';
-      return;
-    }
-    var max=rows.reduce(function(acc,row){ return Math.max(acc, opts.score(row)); }, 0) || 1;
-    el.innerHTML=rows.map(function(row,idx){
-      var score=opts.score(row);
-      var width=Math.max(8, Math.round((score/max)*100));
-      var sub=opts.sub ? opts.sub(row) : '';
-      return '<div class="metric" data-s style="--d:'+(220+idx*45)+'ms">'+
-        '<span class="lab">'+esc(opts.label(row))+'</span>'+
-        '<span class="val">'+esc(opts.value(row))+'</span>'+
-        (sub?'<span class="sub">'+esc(sub)+'</span>':'')+
-        '<span class="track"><i style="--w:'+width+'%;--d:'+(270+idx*45)+'ms"></i></span>'+
-      '</div>';
-    }).join('');
-  }
-
-  function renderRows(containerId, rows){
-    var el=document.getElementById(containerId);
-    if(!el)return;
-    if(!rows || !rows.length){
-      el.innerHTML='<div class="row"><span class="nm">Data error</span><span class="bar"><i style="--w:100%"></i></span><span class="num">n/a</span></div>';
-      return;
-    }
-    var top=rows[0].count || 1;
-    el.innerHTML=rows.map(function(row,idx){
-      var width=Math.max(8,Math.round((row.count/top)*100));
-      return '<div class="row" data-s style="--d:'+(220+idx*45)+'ms"><span class="nm">'+row.name+'</span><span class="bar"><i style="--w:'+width+'%;--d:'+(270+idx*45)+'ms"></i></span><span class="num">'+row.count+'</span></div>';
-    }).join('');
-  }
-
-  function hydrateNewAnalysis(data){
-    var m=data.new_metrics || {};
-    renderMetricList('monthly-list', m.monthly_momentum, {
-      label:function(row){ return monthLabel(row.month); },
-      value:function(row){ return row.messages+' msgs'; },
-      score:function(row){ return row.messages; }
-    });
-    renderMetricList('handoff-list', m.top_handoffs, {
-      label:function(row){ return row.from+' → '+row.to; },
-      value:function(row){ return row.count+' handoffs'; },
-      score:function(row){ return row.count; }
-    });
-    renderMetricList('question-list', m.question_conversion, {
-      label:function(row){ return row.name; },
-      value:function(row){ return row.rate+'%'; },
-      score:function(row){ return row.rate; },
-      sub:function(row){ return row.answered+'/'+row.total+' answered within 30m'; }
-    });
-    renderRows('owl-list', m.night_owls);
-    renderRows('starter-list', m.day_starters);
-  }
-
-  fetch('data/summary.json')
-    .then(function(res){
-      if(!res.ok) throw new Error('summary.json request failed: '+res.status);
-      return res.json();
-    })
-    .then(hydrateNewAnalysis)
-    .catch(function(err){
-      console.error('Failed to load data/summary.json', err);
-      hydrateNewAnalysis({});
-    });
-
   var slides=[].slice.call(document.querySelectorAll('.slide'));
   var prog=document.getElementById('progress');
   var reduce=window.matchMedia?window.matchMedia('(prefers-reduced-motion: reduce)').matches:false;

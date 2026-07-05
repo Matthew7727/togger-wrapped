@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0B3D2E">
+<meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Joe's BBQ Togger — The Almanac 25/26">
+<meta property="og:description" content="The full data room. Every player, every stat, the whole season in nitty-gritty detail.">
+<meta property="og:url" content="https://matthew7727.github.io/togger-wrapped/almanac.html">
+<meta property="og:image" content="https://matthew7727.github.io/togger-wrapped/og-image.png">
+<title>Joe's BBQ Togger — The Almanac 25/26</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --grass:#0B3D2E; --grass2:#0E4A38;
+  --ink:#0A1512;
+  --chalk:#F4F0E6;
+  --orange:#FF5C1F;
+  --blue:#2743FF;
+  --gold:#FFC531;
+  --line:color-mix(in srgb,var(--chalk) 16%,transparent);
+  --panel:color-mix(in srgb,var(--chalk) 5%,transparent);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Space Grotesk',system-ui,sans-serif;
+  background:var(--ink); color:var(--chalk);
+  -webkit-font-smoothing:antialiased;
+  padding:0 0 80px;
+}
+.mono{font-family:'IBM Plex Mono',monospace}
+.wrap{width:100%;max-width:960px;margin:0 auto;padding:0 20px}
+a{color:var(--gold)}
+
+/* ---------- header ---------- */
+.top{
+  background:linear-gradient(160deg,var(--grass),var(--grass2));
+  border-bottom:2px solid var(--line);
+  padding:max(40px,env(safe-area-inset-top)) 0 30px;position:relative;overflow:hidden;
+}
+.top .pitch{position:absolute;inset:0;opacity:.12;pointer-events:none}
+.top .pitch line,.top .pitch circle,.top .pitch rect{stroke:var(--chalk);fill:none;stroke-width:2.5}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;opacity:.75}
+.top h1{font-family:'Anton',Impact,sans-serif;text-transform:uppercase;line-height:.9;
+  font-size:clamp(40px,12vw,86px);margin:10px 0 4px;position:relative}
+.top h1 .hollow{color:transparent;-webkit-text-stroke:2px var(--chalk)}
+.top .ac{color:var(--gold)}
+.top p{max-width:52ch;font-size:15px;line-height:1.5;opacity:.92;position:relative}
+.totals{display:flex;flex-wrap:wrap;gap:22px;margin-top:22px;position:relative}
+.totals div .n{font-family:'Anton',Impact,sans-serif;font-size:clamp(26px,7vw,38px);color:var(--gold);font-variant-numeric:tabular-nums}
+.totals div .l{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;opacity:.7;margin-top:2px}
+
+/* ---------- section frame ---------- */
+section{padding:44px 0 8px}
+.sec-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.sec-head h2{font-family:'Anton',Impact,sans-serif;text-transform:uppercase;font-size:clamp(28px,7vw,46px);line-height:1}
+.sec-head .tag{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.6}
+.sec-sub{font-size:14px;opacity:.8;margin-bottom:20px;max-width:60ch}
+
+/* ---------- the pitch / formation ---------- */
+.field{
+  position:relative;width:100%;aspect-ratio:3/4;max-width:560px;margin:0 auto;
+  background:
+    repeating-linear-gradient(0deg,var(--grass) 0 8%,var(--grass2) 8% 16%);
+  border:2px solid var(--line);border-radius:12px;overflow:hidden;
+}
+.field .lines{position:absolute;inset:0;opacity:.5}
+.field .lines line,.field .lines circle,.field .lines rect{stroke:var(--chalk);fill:none;stroke-width:2}
+.tok{
+  position:absolute;transform:translate(-50%,-50%);width:19%;min-width:60px;
+  display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;
+  text-align:center;
+}
+.tok .shirt{
+  width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
+  font-family:'Anton',Impact,sans-serif;font-size:19px;color:var(--ink);
+  background:var(--chalk);border:2px solid var(--ink);
+  box-shadow:0 3px 0 rgba(0,0,0,.35);transition:transform .15s;
+}
+.tok:hover .shirt,.tok:focus .shirt{transform:scale(1.08)}
+.tok.gk .shirt{background:var(--gold)}
+.tok.cap .shirt{background:var(--orange);color:var(--chalk)}
+.tok .nm{font-size:11px;font-weight:700;line-height:1.1;text-shadow:0 1px 3px rgba(0,0,0,.7);max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tok .mini{font-family:'IBM Plex Mono',monospace;font-size:9px;opacity:.85;text-shadow:0 1px 3px rgba(0,0,0,.7)}
+.field-hint{text-align:center;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;opacity:.6;margin-top:12px;text-transform:uppercase}
+
+/* bench */
+.bench-strip{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;justify-content:center}
+.bench-tok{display:flex;align-items:center;gap:7px;border:1.5px solid var(--line);border-radius:999px;
+  padding:6px 12px 6px 7px;font-size:12px;cursor:pointer;background:var(--panel)}
+.bench-tok .num{width:22px;height:22px;border-radius:50%;background:var(--chalk);color:var(--ink);
+  display:grid;place-items:center;font-family:'Anton',Impact,sans-serif;font-size:12px}
+.bench-tok b{font-weight:700}
+.bench-tok .g{font-family:'IBM Plex Mono',monospace;opacity:.65;font-size:10px}
+
+/* ---------- dossier modal ---------- */
+.modal{position:fixed;inset:0;z-index:100;display:none;align-items:flex-end;justify-content:center;
+  background:rgba(5,10,8,.72);backdrop-filter:blur(4px)}
+.modal.open{display:flex}
+.dossier{background:var(--ink);border:2px solid var(--line);border-radius:16px 16px 0 0;
+  width:100%;max-width:620px;max-height:90vh;overflow:auto;padding:24px 22px max(30px,env(safe-area-inset-bottom))}
+@media(min-width:620px){.modal{align-items:center}.dossier{border-radius:16px}}
+.dossier .dh{display:flex;align-items:center;gap:14px;margin-bottom:4px}
+.dossier .dh .num{width:52px;height:52px;border-radius:50%;background:var(--gold);color:var(--ink);
+  display:grid;place-items:center;font-family:'Anton',Impact,sans-serif;font-size:24px;flex:none}
+.dossier .dh h3{font-family:'Anton',Impact,sans-serif;text-transform:uppercase;font-size:30px;line-height:.95}
+.dossier .dh .sub{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;opacity:.65;text-transform:uppercase}
+.dossier .sig{font-size:26px;margin-left:auto}
+.dstat{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+.dstat div{background:var(--panel);border:1.5px solid var(--line);border-radius:9px;padding:10px}
+.dstat .n{font-family:'Anton',Impact,sans-serif;font-size:22px;color:var(--gold);line-height:1;font-variant-numeric:tabular-nums}
+.dstat .l{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;opacity:.7;margin-top:5px;line-height:1.3}
+.dnote{font-size:13px;opacity:.85;margin-top:16px;line-height:1.5}
+.closex{position:sticky;top:0;float:right;background:var(--chalk);color:var(--ink);border:0;border-radius:50%;
+  width:34px;height:34px;font-size:18px;cursor:pointer;font-weight:700;margin:-6px -4px 0 0}
+
+/* ---------- table ---------- */
+.tablewrap{overflow-x:auto;border:1.5px solid var(--line);border-radius:12px;margin-top:6px}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:13px}
+th,td{padding:9px 11px;text-align:right;white-space:nowrap;border-bottom:1px solid var(--line)}
+th:first-child,td:first-child{text-align:left;position:sticky;left:0;background:var(--ink)}
+thead th{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  opacity:.75;cursor:pointer;user-select:none;position:sticky;top:0;background:var(--ink);z-index:2}
+thead th:first-child{z-index:3}
+thead th.sorted{color:var(--gold);opacity:1}
+tbody tr:hover{background:var(--panel)}
+td.name{font-weight:700}
+tbody tr:nth-child(1) td.name::before{content:"🥇 "}
+tbody tr:nth-child(2) td.name::before{content:"🥈 "}
+tbody tr:nth-child(3) td.name::before{content:"🥉 "}
+
+/* ---------- heatmap ---------- */
+.heat{overflow-x:auto;margin-top:6px}
+.heatgrid{display:grid;grid-template-columns:34px repeat(24,1fr);gap:2px;min-width:640px}
+.heatgrid .hh{font-family:'IBM Plex Mono',monospace;font-size:8px;opacity:.6;text-align:center;align-self:center}
+.heatgrid .rl{font-family:'IBM Plex Mono',monospace;font-size:10px;opacity:.7;align-self:center}
+.cell{aspect-ratio:1;border-radius:2px;background:var(--panel)}
+.heat-legend{display:flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:10px;opacity:.7;margin-top:10px}
+.heat-legend i{width:16px;height:12px;border-radius:2px;display:inline-block}
+
+/* ---------- monthly bars ---------- */
+.months{display:flex;align-items:flex-end;gap:6px;height:200px;margin-top:14px;border-bottom:1.5px solid var(--line);padding-bottom:0}
+.months .mo{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:6px;height:100%}
+.months .mo .bar{width:100%;max-width:34px;background:var(--orange);border-radius:3px 3px 0 0;transition:height .8s cubic-bezier(.2,.8,.2,1)}
+.months .mo .v{font-family:'IBM Plex Mono',monospace;font-size:9px;opacity:.8}
+.months .mo .lab{font-family:'IBM Plex Mono',monospace;font-size:8px;opacity:.6;writing-mode:vertical-rl;transform:rotate(180deg);height:38px}
+
+/* ---------- leaderboards grid ---------- */
+.lb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:8px}
+.lb{border:1.5px solid var(--line);border-radius:11px;padding:14px 15px;background:var(--panel)}
+.lb h4{font-family:'Anton',Impact,sans-serif;text-transform:uppercase;font-size:16px;margin-bottom:10px;letter-spacing:.02em}
+.lb ol{list-style:none;counter-reset:r}
+.lb li{counter-increment:r;display:grid;grid-template-columns:18px 1fr auto;gap:8px;align-items:center;
+  font-size:13px;padding:4px 0;border-top:1px solid var(--line)}
+.lb li:first-child{border-top:0}
+.lb li::before{content:counter(r);font-family:'IBM Plex Mono',monospace;font-size:10px;opacity:.55}
+.lb li .who{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lb li:first-child .who{font-weight:700;color:var(--gold)}
+.lb li .v{font-family:'IBM Plex Mono',monospace;font-size:11px;opacity:.85}
+
+/* ---------- records / cards ---------- */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-top:8px}
+.rcard{border:2px solid var(--line);border-radius:12px;padding:16px;background:var(--panel)}
+.rcard .k{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;opacity:.65}
+.rcard .v{font-family:'Anton',Impact,sans-serif;text-transform:uppercase;font-size:26px;color:var(--gold);margin:6px 0 4px;line-height:1}
+.rcard p{font-size:13px;line-height:1.45;opacity:.9}
+
+/* ---------- dictionary ---------- */
+.chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:8px}
+.chip{border:1.5px solid var(--line);border-radius:999px;padding:8px 14px;font-size:13px}
+.chip b{color:var(--gold)}
+.chip .o{font-family:'IBM Plex Mono',monospace;font-size:10px;opacity:.65;margin-left:5px}
+
+/* ---------- footer ---------- */
+footer{margin-top:40px;border-top:2px solid var(--line);padding-top:24px}
+footer .meth{font-size:12px;line-height:1.6;opacity:.7;max-width:70ch}
+.backbtn{display:inline-block;margin-top:18px;background:var(--chalk);color:var(--ink);
+  text-decoration:none;border-radius:999px;padding:13px 24px;font-weight:700;font-size:15px}
+
+.loading{opacity:.6;font-family:'IBM Plex Mono',monospace;font-size:13px;padding:20px 0}
+
+@media (max-width:520px){
+  .wrap{padding:0 15px}
+  .totals{gap:16px}
+  .dstat{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <svg class="pitch" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+    <line x1="200" y1="0" x2="200" y2="300"/><circle cx="200" cy="150" r="60"/>
+    <rect x="0" y="90" width="70" height="120"/><rect x="330" y="90" width="70" height="120"/>
+  </svg>
+  <div class="wrap">
+    <div class="eyebrow">The data room · 2025/26</div>
+    <h1>The <span class="ac">Almanac</span><br><span class="hollow">Togger</span></h1>
+    <p>The wrapped was the highlight reel. This is the whole tape — every player, every stat, all the nitty-gritty the story mode didn't have time for.</p>
+    <div class="totals" id="totals"></div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="squad">
+    <div class="sec-head"><h2>The squad</h2><span class="tag">tap a player for their dossier</span></div>
+    <p class="sec-sub">Starting XI by message count, in a classic 4-3-3. The captain's armband goes to the group's engine. Everyone else is squad depth.</p>
+    <div class="field" id="field"><div class="lines"></div></div>
+    <div class="field-hint">▸ tap any shirt ▸</div>
+    <div class="bench-strip" id="bench"></div>
+  </section>
+
+  <section id="table">
+    <div class="sec-head"><h2>Full table</h2><span class="tag">tap a column to sort</span></div>
+    <p class="sec-sub">All 19 players, every core stat. Sorted by messages — tap any header to re-rank.</p>
+    <div class="tablewrap"><table id="league"><thead></thead><tbody></tbody></table></div>
+  </section>
+
+  <section id="heatmap">
+    <div class="sec-head"><h2>When we chat</h2><span class="tag">weekday × hour</span></div>
+    <p class="sec-sub">Darker = busier. The whole week at a glance — and yes, Saturday afternoon is a wall of green.</p>
+    <div class="heat"><div class="heatgrid" id="heatgrid"></div></div>
+    <div class="heat-legend"><span>quiet</span><i style="background:color-mix(in srgb,var(--orange) 15%,transparent)"></i><i style="background:color-mix(in srgb,var(--orange) 50%,transparent)"></i><i style="background:var(--orange)"></i><span>peak</span></div>
+  </section>
+
+  <section id="timeline">
+    <div class="sec-head"><h2>The season</h2><span class="tag">month by month</span></div>
+    <p class="sec-sub">Fifteen months of chatter. December somehow topped every actual football month.</p>
+    <div class="months" id="months"></div>
+  </section>
+
+  <section id="leaderboards">
+    <div class="sec-head"><h2>Leaderboards</h2><span class="tag">the full lists</span></div>
+    <p class="sec-sub">Every table the wrapped only teased — now in full.</p>
+    <div class="lb-grid" id="lb-grid"></div>
+  </section>
+
+  <section id="handoffs">
+    <div class="sec-head"><h2>Passing game</h2><span class="tag">who replies to who</span></div>
+    <p class="sec-sub">A handoff is two back-to-back messages from different people. The top of this list is basically two lads having a season-long conversation.</p>
+    <div class="lb-grid" id="handoff-wrap"></div>
+  </section>
+
+  <section id="records">
+    <div class="sec-head"><h2>Records &amp; oddities</h2><span class="tag">the record books</span></div>
+    <p class="sec-sub">The extremes of the season, for the stattos.</p>
+    <div class="cards" id="records"></div>
+  </section>
+
+  <section id="dictionary">
+    <div class="sec-head"><h2>The dictionary</h2><span class="tag">signature vocabulary</span></div>
+    <p class="sec-sub">Words this group cannot stop saying, and the lad most responsible for each.</p>
+    <div class="chips" id="dict"></div>
+  </section>
+
+  <footer>
+    <div class="eyebrow" style="margin-bottom:8px">Methodology</div>
+    <p class="meth" id="meth"></p>
+    <a class="backbtn" href="index.html">↺ Back to the Wrapped</a>
+  </footer>
+
+  <div class="loading" id="loading">Loading the season data…</div>
+</main>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true">
+  <div class="dossier" id="dossier"></div>
+</div>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  var PLAYERS=[];
+
+  function esc(v){
+    var map={'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'};
+    return String(v).replace(/[&<>"']/g,function(c){return map[c];});
+  }
+  function fmt(n){return Number(n).toLocaleString('en-GB');}
+  function replyText(s){
+    if(!s) return '—';
+    if(s<90) return s+'s';
+    return (Math.round(s/60*10)/10)+'m';
+  }
+  function monthLabel(ym){
+    var b=ym.split('-');
+    return new Date(+b[0],+b[1]-1,1).toLocaleString('en-GB',{month:'short',year:'2-digit'});
+  }
+
+  // 4-3-3, portrait pitch, attack near the top. [topPct, leftPct]
+  var FORMATION=[
+    [88,50],           // 1 GK
+    [70,16],[70,39],[70,61],[70,84], // 2-5 DEF
+    [46,26],[46,50],[46,74],         // 6-8 MID
+    [20,24],[16,50],[20,76]          // 9-11 FWD
+  ];
+
+  function renderTotals(meta){
+    var t=meta.totals, s=meta.season;
+    var items=[
+      [fmt(t.messages),'messages'],
+      [fmt(t.words),'words'],
+      [fmt(t.media),'photos & clips'],
+      [t.polls,'polls'],
+      [t.participants,'players'],
+      [s.days_active+'/'+s.days_total,'days active']
+    ];
+    $('totals').innerHTML=items.map(function(i){
+      return '<div><div class="n">'+i[0]+'</div><div class="l">'+i[1]+'</div></div>';
+    }).join('');
+  }
+
+  function renderField(players){
+    var field=$('field');
+    // pitch chalk lines
+    var svg='<svg class="lines" viewBox="0 0 300 400" preserveAspectRatio="none">'+
+      '<rect x="4" y="4" width="292" height="392"/>'+
+      '<line x1="4" y1="200" x2="296" y2="200"/><circle cx="150" cy="200" r="46"/>'+
+      '<rect x="80" y="4" width="140" height="60"/><rect x="80" y="336" width="140" height="60"/>'+
+      '<rect x="120" y="4" width="60" height="26"/><rect x="120" y="370" width="60" height="26"/>'+
+      '</svg>';
+    var toks=players.slice(0,11).map(function(p,i){
+      var pos=FORMATION[i];
+      var cls='tok'+(i===0?' gk':'')+(p.rank===1?' cap':'');
+      return '<div class="'+cls+'" style="top:'+pos[0]+'%;left:'+pos[1]+'%" data-full="'+esc(p.full)+'" tabindex="0" role="button" aria-label="'+esc(p.name)+' dossier">'+
+        '<div class="shirt">'+p.rank+'</div>'+
+        '<div class="nm">'+esc(p.name)+'</div>'+
+        '<div class="mini">'+fmt(p.messages)+'</div>'+
+      '</div>';
+    }).join('');
+    field.innerHTML=svg+toks;
+
+    var bench=players.slice(11);
+    $('bench').innerHTML='<div style="width:100%;text-align:center;font-family:\'IBM Plex Mono\',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;opacity:.6;margin-bottom:2px">The bench</div>'+
+      bench.map(function(p){
+        return '<div class="bench-tok" data-full="'+esc(p.full)+'" tabindex="0" role="button">'+
+          '<span class="num">'+p.rank+'</span><b>'+esc(p.name)+'</b>'+
+          '<span class="g">'+fmt(p.messages)+' msgs</span></div>';
+      }).join('');
+  }
+
+  var COLS=[
+    ['name','Player','name'],['messages','Msgs'],['words','Words'],['wpm','W/msg'],
+    ['media','Media'],['photo','Photos'],['gif','GIFs'],['video','Vids'],
+    ['polls','Polls'],['questions','Qs'],['night','Night'],['emoji','Emoji'],
+    ['swears','Swears'],['conv_starts','Convos'],['last_words','Last word'],['median_reply_s','Reply']
+  ];
+  var sortKey='messages', sortDir=-1;
+
+  function renderTable(){
+    var head='<tr>'+COLS.map(function(c){
+      var cls=(c[0]===sortKey?'sorted':'');
+      var arrow=c[0]===sortKey?(sortDir<0?' ▾':' ▴'):'';
+      return '<th class="'+cls+'" data-k="'+c[0]+'">'+c[1]+arrow+'</th>';
+    }).join('')+'</tr>';
+    $('league').tHead.innerHTML=head;
+
+    var rows=PLAYERS.slice().sort(function(a,b){
+      var x=a[sortKey],y=b[sortKey];
+      if(typeof x==='string') return sortDir*x.localeCompare(y);
+      return sortDir*(x-y);
+    });
+    $('league').tBodies[0].innerHTML=rows.map(function(p){
+      return '<tr data-full="'+esc(p.full)+'">'+COLS.map(function(c){
+        var k=c[0],v=p[k];
+        if(k==='name') return '<td class="name">'+esc(v)+'</td>';
+        if(k==='median_reply_s') return '<td>'+replyText(v)+'</td>';
+        if(k==='wpm') return '<td>'+v+'</td>';
+        return '<td>'+fmt(v)+'</td>';
+      }).join('')+'</tr>';
+    }).join('');
+  }
+
+  function renderHeat(hm){
+    var g=$('heatgrid'), max=hm.max||1;
+    var html='<div class="hh"></div>';
+    for(var h=0;h<24;h++) html+='<div class="hh">'+(h%3===0?h:'')+'</div>';
+    hm.weekdays.forEach(function(day,di){
+      html+='<div class="rl">'+day+'</div>';
+      for(var h=0;h<24;h++){
+        var v=hm.grid[di][h];
+        var a=v/max;
+        var bg=v===0?'var(--panel)':'color-mix(in srgb,var(--orange) '+Math.round(12+a*88)+'%,transparent)';
+        html+='<div class="cell" style="background:'+bg+'" title="'+day+' '+h+':00 — '+v+' msgs"></div>';
+      }
+    });
+    g.innerHTML=html;
+  }
+
+  function renderMonths(months){
+    var max=months.reduce(function(m,x){return Math.max(m,x.messages);},1);
+    $('months').innerHTML=months.map(function(m){
+      var h=Math.round((m.messages/max)*100);
+      return '<div class="mo"><div class="v">'+m.messages+'</div>'+
+        '<div class="bar" style="height:'+h+'%"></div>'+
+        '<div class="lab">'+monthLabel(m.month)+'</div></div>';
+    }).join('');
+  }
+
+  var LB_ORDER=[
+    ['messages','Most messages'],['words','Most words'],['media','Media kings'],
+    ['gifs','GIF merchants'],['emoji','Emoji users'],['polls','Returning officers'],
+    ['night_owls','Night owls'],['day_starters','Day starters'],['conv_starts','Conversation starters'],
+    ['fastest_reply','Fastest fingers'],['wpm','Wordiest per msg'],['swears','Potty mouths'],
+    ['question_conversion','Best answered']
+  ];
+  function renderLeaderboards(lb){
+    $('lb-grid').innerHTML=LB_ORDER.filter(function(o){return lb[o[0]]&&lb[o[0]].length;}).map(function(o){
+      var rows=lb[o[0]].map(function(r){
+        var val, who=r.name;
+        if(o[0]==='question_conversion') val=r.rate+'% ('+r.answered+'/'+r.total+')';
+        else if(o[0]==='fastest_reply') val=replyText(r.value);
+        else val=fmt(r.value)+' '+(r.label||'');
+        return '<li><span class="who">'+esc(who)+'</span><span class="v">'+esc(val)+'</span></li>';
+      }).join('');
+      return '<div class="lb"><h4>'+o[1]+'</h4><ol>'+rows+'</ol></div>';
+    }).join('');
+  }
+
+  function renderHandoffs(list){
+    var max=list.reduce(function(m,x){return Math.max(m,x.count);},1);
+    var rows=list.map(function(r){
+      return '<li><span class="who">'+esc(r.from)+' → '+esc(r.to)+'</span><span class="v">'+r.count+'</span></li>';
+    }).join('');
+    $('handoff-wrap').innerHTML='<div class="lb"><h4>Top pairings</h4><ol>'+rows+'</ol></div>';
+  }
+
+  function renderRecords(r){
+    var c=[];
+    if(r.longest_message) c.push(['Longest message',r.longest_message.chars+' chars',r.longest_message.name+' — "'+r.longest_message.preview.slice(0,80)+(r.longest_message.preview.length>80?'…':'')+'"']);
+    if(r.longest_silence) c.push(['Longest silence',r.longest_silence.days+' days',r.longest_silence.from+' → broken by '+r.longest_silence.breaker]);
+    c.push(['Longest streak',r.longest_streak_days+' days','Consecutive days with at least one message']);
+    if(r.biggest_day) c.push(['Busiest day',fmt(r.biggest_day.count)+' msgs',r.biggest_day.date]);
+    if(r.biggest_photo_run) c.push(['Biggest photo run',r.biggest_photo_run.count+' in a row',r.biggest_photo_run.name+' · '+r.biggest_photo_run.date]);
+    $('records').innerHTML=c.map(function(x){
+      return '<div class="rcard"><div class="k">'+esc(x[0])+'</div><div class="v">'+esc(x[1])+'</div><p>'+esc(x[2])+'</p></div>';
+    }).join('');
+  }
+
+  function renderDict(list){
+    $('dict').innerHTML=list.map(function(d){
+      return '<span class="chip">'+esc(d.word)+' <b>×'+d.count+'</b><span class="o">top: '+esc(d.owner)+'</span></span>';
+    }).join('');
+  }
+
+  function openDossier(full){
+    var p=PLAYERS.filter(function(x){return x.full===full;})[0];
+    if(!p) return;
+    var stats=[
+      [fmt(p.messages),'messages'],[fmt(p.words),'words'],[p.wpm,'words / msg'],
+      [fmt(p.media),'photos & clips'],[p.gif,'GIFs'],[p.video,'videos'],
+      [p.polls,'polls filed'],[p.questions,'questions'],[p.emoji,'emoji'],
+      [p.night,'after midnight'],[p.conv_starts,'convos started'],[p.last_words,'last words'],
+      [p.day_starts,'days opened'],[replyText(p.median_reply_s),'median reply'],[p.swears,'swears'],
+      [p.deleted,'deleted'],[p.edited,'edited'],[p.longest_message,'longest (chars)']
+    ];
+    $('dossier').innerHTML=
+      '<button class="closex" aria-label="Close">×</button>'+
+      '<div class="dh"><div class="num">'+p.rank+'</div>'+
+        '<div><div class="sub">#'+p.rank+' in the league</div><h3>'+esc(p.name)+'</h3></div>'+
+        '<div class="sig">'+(p.top_emoji||'')+'</div></div>'+
+      '<div class="dstat">'+stats.map(function(s){
+        return '<div><div class="n">'+esc(s[0])+'</div><div class="l">'+esc(s[1])+'</div></div>';
+      }).join('')+'</div>'+
+      '<p class="dnote">Signature emoji '+(p.top_emoji||'—')+'. '+
+        'Answered '+p.questions_answered+' of their own '+p.questions+' questions get replies within 30 minutes. '+
+        'Sent '+p.night+' messages between midnight and 6am.</p>';
+    $('dossier').querySelector('.closex').addEventListener('click',closeModal);
+    $('modal').classList.add('open');
+  }
+  function closeModal(){$('modal').classList.remove('open');}
+
+  document.addEventListener('click',function(e){
+    var t=e.target.closest('[data-full]');
+    if(t){openDossier(t.getAttribute('data-full'));return;}
+    if(e.target.id==='modal') closeModal();
+    var th=e.target.closest('th[data-k]');
+    if(th){
+      var k=th.getAttribute('data-k');
+      if(k===sortKey) sortDir*=-1; else {sortKey=k;sortDir=(k==='name')?1:-1;}
+      renderTable();
+    }
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape') closeModal();
+    if((e.key==='Enter'||e.key===' ')&&document.activeElement&&document.activeElement.hasAttribute('data-full')){
+      e.preventDefault();openDossier(document.activeElement.getAttribute('data-full'));
+    }
+  });
+
+  fetch('data/summary.json')
+    .then(function(r){if(!r.ok)throw new Error(r.status);return r.json();})
+    .then(function(d){
+      PLAYERS=d.players;
+      renderTotals(d.meta);
+      renderField(d.players);
+      renderTable();
+      renderHeat(d.heatmap);
+      renderMonths(d.monthly);
+      renderLeaderboards(d.leaderboards);
+      renderHandoffs(d.handoffs);
+      renderRecords(d.records);
+      renderDict(d.dictionary);
+      $('meth').textContent=d.methodology.notes+' Generated '+d.meta.generated+'.';
+      $('loading').style.display='none';
+    })
+    .catch(function(err){
+      $('loading').textContent='Could not load season data ('+err.message+').';
+      console.error(err);
+    });
+})();
+</script>
+</body>
+</html>
