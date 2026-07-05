@@ -159,6 +159,7 @@ body{
 .dark-p span{background:rgba(0,0,0,.22)} .dark-p span i{background:#111}
 .zone{position:fixed;top:0;bottom:0;width:34%;z-index:40;cursor:pointer}
 #back{left:0}#fwd{right:0;width:66%}
+#finale.active .wrap{z-index:45}
 #restart{font:inherit;margin:18px auto 0;display:block;background:var(--fg);color:var(--bg);border:0;border-radius:999px;
   padding:14px 26px;font-weight:700;font-size:15px;cursor:pointer;position:relative;z-index:60}
 .almanac-cta{display:block;width:max-content;max-width:100%;margin:30px auto 0;text-decoration:none;background:var(--orange);color:#0A1512;
@@ -190,10 +191,11 @@ body{
 <body>
 
 <div id="progress" aria-hidden="true"></div>
+
+<div id="stage">
 <div class="zone" id="back" aria-label="Previous"></div>
 <div class="zone" id="fwd" aria-label="Next"></div>
 
-<div id="stage">
 
 <!-- 0 · COVER -->
 <section class="slide" data-theme="">
@@ -513,7 +515,7 @@ body{
   </div>
 </section>
 <!-- FULL TIME -->
-<section class="slide">
+<section class="slide" id="finale">
   <svg class="pitch" viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice">
     <circle cx="200" cy="400" r="90"/><line x1="0" y1="400" x2="400" y2="400"/>
     <rect x="90" y="-2" width="220" height="110"/><rect x="90" y="692" width="220" height="110"/>
