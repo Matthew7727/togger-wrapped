@@ -422,60 +422,60 @@ body{
 <!-- 16 · MONTHLY MOMENTUM -->
 <section class="slide t-blue">
   <div class="wrap">
-    <div class="eyebrow" data-s style="--d:0ms">New analysis · month-by-month</div>
+    <div class="eyebrow" data-s style="--d:0ms">Form guide · month by month</div>
     <h2 class="display" data-s style="--d:100ms">Monthly<br><span class="ac">momentum</span></h2>
     <div class="metric-list" id="monthly-list" data-s style="--d:260ms">
       <div class="metric"><span class="lab">Loading months</span><span class="val">…</span><span class="track"><i style="--w:100%;--d:270ms"></i></span></div>
     </div>
-    <p class="foot" data-s style="--d:620ms">Now generated from <code>_chat.txt</code> data, not hand-entered.</p>
+    <p class="foot" data-s style="--d:620ms">December was the group's Christmas No. 1.<br>Somehow beat every actual football month.</p>
   </div>
 </section>
 
 <!-- 17 · HANDOFF NETWORK -->
 <section class="slide t-orange">
   <div class="wrap">
-    <div class="eyebrow" data-s style="--d:0ms">New analysis · who replies to who</div>
+    <div class="eyebrow" data-s style="--d:0ms">Tactical analysis · the passing game</div>
     <h2 class="display" data-s style="--d:100ms">Handoff<br><span class="hollow">network</span></h2>
     <div class="metric-list" id="handoff-list" data-s style="--d:260ms">
       <div class="metric"><span class="lab">Loading pairings</span><span class="val">…</span><span class="track"><i style="--w:100%;--d:270ms"></i></span></div>
     </div>
-    <p class="foot" data-s style="--d:620ms">A handoff is two consecutive messages from different people.</p>
+    <p class="foot" data-s style="--d:620ms">Two players, doing all the talking.<br>Everyone else is basically watching a rally.</p>
   </div>
 </section>
 
 <!-- 18 · QUESTION CONVERSION -->
 <section class="slide t-ink">
   <div class="wrap">
-    <div class="eyebrow" data-s style="--d:0ms">New analysis · question effectiveness</div>
+    <div class="eyebrow" data-s style="--d:0ms">VAR review · who actually answers</div>
     <h2 class="display" data-s style="--d:100ms">Question<br><span class="ac">conversion</span></h2>
     <div class="metric-list" id="question-list" data-s style="--d:260ms">
       <div class="metric"><span class="lab">Loading conversion</span><span class="val">…</span><span class="track"><i style="--w:100%;--d:270ms"></i></span></div>
     </div>
-    <p class="foot" data-s style="--d:620ms">Shows share of questions answered by someone else within 30 minutes.</p>
+    <p class="foot" data-s style="--d:620ms">Ask these lads something, get an answer in 30 minutes.<br>Ask the group chat anything else, wait until Tuesday.</p>
   </div>
 </section>
 
 <!-- 19 · NIGHT OWLS -->
 <section class="slide t-gold">
   <div class="wrap">
-    <div class="eyebrow" data-s style="--d:0ms">New analysis · late-shift table</div>
+    <div class="eyebrow" data-s style="--d:0ms">Late kick-offs · 00:00–05:59</div>
     <h2 class="display" data-s style="--d:100ms">Night<br><span class="hollow">owls</span></h2>
     <div class="rows" id="owl-list">
       <div class="row" data-s style="--d:220ms"><span class="nm">Loading</span><span class="bar"><i style="--w:100%;--d:270ms"></i></span><span class="num">...</span></div>
     </div>
-    <p class="foot" data-s style="--d:620ms">Messages sent between 00:00 and 05:59.</p>
+    <p class="foot" data-s style="--d:620ms">Sending texts at 3am with work in five hours.<br>Peak form, questionable judgement.</p>
   </div>
 </section>
 
 <!-- 20 · DAY STARTERS -->
 <section class="slide t-blue">
   <div class="wrap">
-    <div class="eyebrow" data-s style="--d:0ms">New analysis · who starts the chatter</div>
+    <div class="eyebrow" data-s style="--d:0ms">Kick-off · who opens the day's play</div>
     <h2 class="display" data-s style="--d:100ms">Day<br><span class="ac">starters</span></h2>
     <div class="rows" id="starter-list">
       <div class="row" data-s style="--d:220ms"><span class="nm">Loading</span><span class="bar"><i style="--w:100%;--d:270ms"></i></span><span class="num">...</span></div>
     </div>
-    <p class="foot" id="methodology-note" data-s style="--d:620ms">Methodology loading...</p>
+    <p class="foot" id="methodology-note" data-s style="--d:620ms">Someone has to break the overnight silence.<br>It's usually the same someone.</p>
   </div>
 </section>
 
@@ -721,11 +721,6 @@ body{
     });
     renderRows('owl-list', m.night_owls);
     renderRows('starter-list', m.day_starters);
-
-    var method=document.getElementById('methodology-note');
-    if(method && data.methodology){
-      method.textContent='Conversation starts use a '+data.methodology.conversation_gap_minutes+'-minute silence gap. Question conversion window: '+data.methodology.question_answer_window_minutes+' minutes.';
-    }
   }
 
   fetch('data/summary.json')
